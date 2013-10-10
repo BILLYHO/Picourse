@@ -7,12 +7,19 @@
 //
 
 #import "PiAppDelegate.h"
+#import "PiMainViewController.h"
 
 @implementation PiAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+	[self.window makeKeyAndVisible];
+	
+	PiMainViewController *mainview = [[PiMainViewController alloc]initWithNibName:@"PiMainViewController" bundle:nil];
+	UINavigationController *view = [[UINavigationController alloc] initWithRootViewController:mainview];
+	[self.window setRootViewController:view];
     return YES;
 }
 							
