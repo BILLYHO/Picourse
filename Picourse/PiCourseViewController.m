@@ -10,6 +10,7 @@
 #import "UIBarButtonItem+ProjectButton.h"
 #import "PiCourseChildViewController.h"
 
+#define base_url @"http://172.18.157.160/picourse/index.php/"
 @interface PiCourseViewController ()
 
 @end
@@ -37,9 +38,11 @@
     [[self.pageController view] setFrame:[[self view] bounds]];
     
     PiCourseChildViewController *initialViewController = [self viewControllerAtIndex:0];
+    initialViewController.category = self.category;
+    
     
     NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
-    
+
     [self.pageController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
     [self addChildViewController:self.pageController];

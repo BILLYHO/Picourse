@@ -16,4 +16,6 @@
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) IBOutlet UILabel *labelOfImage;
 
+@property (strong, nonatomic) NSString *category;
+@property (strong, nonatomic) NSDictionary *courseInfo;
 @end

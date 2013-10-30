@@ -11,5 +11,5 @@
 @interface PiCourseViewController : UIViewController <UIPageViewControllerDelegate>
 
 @property (strong, nonatomic) UIPageViewController *pageController;
-
+@property (strong, nonatomic) NSString *category;
 @end

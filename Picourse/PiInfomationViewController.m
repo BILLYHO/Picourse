@@ -12,9 +12,9 @@
 #import "PiNormalCell.h"
 #import "PiInfomationDetailViewController.h"
 
+#define base_url @"http://121.199.60.94/picourse/index.php/"
+
 @interface PiInfomationViewController ()
-
-
 
 @end
 
@@ -22,6 +22,7 @@
 
 static NSString *topCellIdentifier = @"TopCell";
 static NSString *normalCellIdentifier = @"NormalCell";
+int cellNum = 5;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,7 +43,7 @@ static NSString *normalCellIdentifier = @"NormalCell";
 	[self.tableView registerNib:topnib forCellReuseIdentifier:topCellIdentifier];
 	UINib *normalnib = [UINib nibWithNibName:@"PiNormalCell" bundle:nil];
 	[self.tableView registerNib:normalnib forCellReuseIdentifier:normalCellIdentifier];
-	//[self.tableView setRowHeight:210];
+	
 }
 
 - (void)didReceiveMemoryWarning
@@ -68,29 +69,97 @@ static NSString *normalCellIdentifier = @"NormalCell";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+	return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;//rand()%10+2;
+    if (section == 0)
+		return cellNum;
+	else
+		return 1;//5;//rand()%10+2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	int num = 0;
+	if ([_category isEqualToString:@"SelectedCourse"])
+	{
+		num = 7 + indexPath.row % 5;
+	}
+	if ([_category isEqualToString:@"SolutionInfo"] || [_category isEqualToString:@"ViewInfo"])
+	{
+		num = 1;
+	}
+	if ([_category isEqualToString:@"NewsInfo"] || [_category isEqualToString:@"AcInfo"])
+	{
+		num = 1 + indexPath.row % 5;
+	}
 	
-    if (indexPath.row == 0)
+	//fetch data from the server
+    NSError *error;
+    //加载一个NSURL对象
+    NSString *urlString = [base_url stringByAppendingString:
+						   [NSString stringWithFormat:@"%@/get%@ById/id/%d",_category,_category,num]];
+    
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    //将请求的url数据放到NSData对象中
+    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    //IOS5自带解析类NSJSONSerialization从response中解析出数据放到字典中
+    NSDictionary *courseDic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableLeaves error:&error];
+    NSArray *courseArr = [courseDic objectForKey:@"data"];
+	NSDictionary *courseInfo = [courseArr objectAtIndex:0];
+
+
+	NSString *title, *content;
+	if ([_category isEqualToString:@"SelectedCourse"])
+	{
+		title = [NSString stringWithFormat:@"%@ ",[courseInfo objectForKey:@"theme"]];
+		content = [NSString stringWithFormat:@"%@",[courseInfo objectForKey:@"target"]];
+	}
+	if ([_category isEqualToString:@"SolutionInfo"] || [_category isEqualToString:@"ViewInfo"]){
+		title = [NSString stringWithFormat:@"%@ ",[courseInfo objectForKey:@"title"]];
+		content = [NSString stringWithFormat:@"%@",[courseInfo objectForKey:@"content"]];
+	}
+	if ([_category isEqualToString:@"NewsInfo"] || [_category isEqualToString:@"AcInfo"])
+	{
+		title = [NSString stringWithFormat:@"%@ ",[courseInfo objectForKey:@"title"]];
+		content = [NSString stringWithFormat:@"%@",[courseInfo objectForKey:@"intro"]];
+	}
+	
+	
+    if (indexPath.section == 0 && indexPath.row % 5 == 0)
 	{
 		PiTopCell *cell = (PiTopCell *)[tableView dequeueReusableCellWithIdentifier:topCellIdentifier];
+        
 		if (cell == nil)
 		{
 			cell = [[PiTopCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:topCellIdentifier];
 		}
 		cell.cellImage.image = [UIImage imageNamed:@"ted.jpg"];
 		cell.titleLabel.textColor = [UIColor whiteColor];
-		cell.titleLabel.text = @"标题";
+		cell.titleLabel.text = title;
+		cell.titleLabel.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.7];
+		cell.companyLabel.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.7];
+		//cell.titleLabel.font = [UIFont fontNamesForFamilyName:@"Helvetica"];
 		cell.companyLabel.textColor = [UIColor whiteColor];
 		cell.companyLabel.text = @"主办机构";
+		return cell;
+	}
+	else if (indexPath.section == 0)
+	{
+		PiNormalCell *cell = (PiNormalCell *)[tableView dequeueReusableCellWithIdentifier:normalCellIdentifier];
+		if (cell == nil)
+		{
+			cell = [[PiNormalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:normalCellIdentifier];
+		}
+		[self.tableView setRowHeight:100];
+		cell.cellImage.image = [UIImage imageNamed:@"ted.jpg"];
+        cell.titleLabel.text = title;
+        cell.companyLabel.text = [NSString stringWithFormat:@"%@",[courseInfo objectForKey:@"agency_id"]];
+        cell.contentLabel.text = content;
+		cell.contentLabel.numberOfLines = 3;
 		return cell;
 	}
 	else
@@ -100,12 +169,7 @@ static NSString *normalCellIdentifier = @"NormalCell";
 		{
 			cell = [[PiNormalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:normalCellIdentifier];
 		}
-		[self.tableView setRowHeight:100];
-		cell.cellImage.image = [UIImage imageNamed:@"ted.jpg"];
-		cell.titleLabel.text = @"标题";
-		cell.companyLabel.text = @"主办机构";
-		cell.contentLabel.text = @"内容有很多很多很多很多很多很多很多很多很多很多很多很多很多很多很多很多";
-		cell.contentLabel.numberOfLines = 3;
+        cell.textLabel.text = @"load more";
 		return cell;
 	}
 }
@@ -114,14 +178,25 @@ static NSString *normalCellIdentifier = @"NormalCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return indexPath.row == 0 ? 210 : 100;
+	if (indexPath.section == 0)
+		return indexPath.row % 5 == 0 ? 210 : 100;
+	else
+		return 100;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	if (indexPath.section == 1)
+	{
+		cellNum += 5;
+		[tableView reloadData];
+	}
+	else
+	{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 	PiInfomationDetailViewController *detailview = [[PiInfomationDetailViewController alloc]initWithNibName:@"PiInfomationDetailViewController" bundle:nil];
 	[self.navigationController pushViewController:detailview animated:YES];
+	}
 }
 
 @end

@@ -90,6 +90,7 @@
 	PiInfomationViewController *infoView = [[PiInfomationViewController alloc] initWithNibName:@"PiInfomationViewController" bundle:nil];
 	self.navigationController.navigationBarHidden = NO;
 	infoView.navigationItem.title = @"精选课程";
+    infoView.category = @"SelectedCourse";
 	[self.navigationController pushViewController:infoView animated:YES];
 }
 
@@ -98,6 +99,7 @@
 	PiInfomationViewController *infoView = [[PiInfomationViewController alloc] initWithNibName:@"PiInfomationViewController" bundle:nil];
 	self.navigationController.navigationBarHidden = NO;
 	infoView.navigationItem.title = @"解决方案";
+    infoView.category = @"SolutionInfo";
 	[self.navigationController pushViewController:infoView animated:YES];
 }
 
@@ -106,6 +108,7 @@
 	PiInfomationViewController *infoView = [[PiInfomationViewController alloc] initWithNibName:@"PiInfomationViewController" bundle:nil];
 	self.navigationController.navigationBarHidden = NO;
 	infoView.navigationItem.title = @"观察与观点";
+	infoView.category = @"ViewInfo";
 	[self.navigationController pushViewController:infoView animated:YES];
 }
 
@@ -114,6 +117,7 @@
 	PiInfomationViewController *infoView = [[PiInfomationViewController alloc] initWithNibName:@"PiInfomationViewController" bundle:nil];
 	self.navigationController.navigationBarHidden = NO;
 	infoView.navigationItem.title = @"行业资讯";
+	infoView.category = @"NewsInfo";
 	[self.navigationController pushViewController:infoView animated:YES];
 }
 
@@ -122,6 +126,7 @@
 	PiCourseViewController *courseView = [[PiCourseViewController alloc] initWithNibName:@"PiCourseViewController" bundle:nil];
 	self.navigationController.navigationBarHidden = NO;
 	courseView.navigationItem.title = @"高层管理课程";
+    courseView.category = @"HighCourse";
 	[self.navigationController pushViewController:courseView animated:YES];
 }
 
@@ -130,6 +135,7 @@
 	PiCourseViewController *courseView = [[PiCourseViewController alloc] initWithNibName:@"PiCourseViewController" bundle:nil];
 	self.navigationController.navigationBarHidden = NO;
 	courseView.navigationItem.title = @"中基层人员管理课程";
+    courseView.category = @"MidCourse";
 	[self.navigationController pushViewController:courseView animated:YES];
 }
 
@@ -138,6 +144,7 @@
 	PiInfomationViewController *infoView = [[PiInfomationViewController alloc] initWithNibName:@"PiInfomationViewController" bundle:nil];
 	self.navigationController.navigationBarHidden = NO;
 	infoView.navigationItem.title = @"行业活动";
+	infoView.category = @"AcInfo";
 	[self.navigationController pushViewController:infoView animated:YES];
 }
 
@@ -146,6 +153,7 @@
 	PiCourseViewController *courseView = [[PiCourseViewController alloc] initWithNibName:@"PiCourseViewController" bundle:nil];
 	self.navigationController.navigationBarHidden = NO;
 	courseView.navigationItem.title = @"公开课程";
+    courseView.category = @"OpenCourse";
 	[self.navigationController pushViewController:courseView animated:YES];
 }
 

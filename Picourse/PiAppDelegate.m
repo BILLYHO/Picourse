@@ -9,6 +9,8 @@
 #import "PiAppDelegate.h"
 #import "PiMainViewController.h"
 
+#define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+
 @implementation PiAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -16,8 +18,15 @@
     // Override point for customization after application launch.
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	[self.window makeKeyAndVisible];
-	
 	PiMainViewController *mainview = [[PiMainViewController alloc]initWithNibName:@"PiMainViewController" bundle:nil];
+//	if (iPhone5)
+//	{
+//		mainview = [[PiMainViewController alloc]initWithNibName:@"PiMainViewController" bundle:nil];
+//	}
+//	else
+//	{
+//		mainview = [[PiMainViewController alloc]initWithNibName:@"PiMainViewController-3.5" bundle:nil];
+//	}
 	UINavigationController *view = [[UINavigationController alloc] initWithRootViewController:mainview];
 	[self.window setRootViewController:view];
     return YES;
