@@ -18,10 +18,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *activityButton;
 @property (strong, nonatomic) IBOutlet UIButton *openCourseButton;
 
-@property (strong, nonatomic) IBOutlet UIButton *shareButtom;
-@property (strong, nonatomic) IBOutlet UIButton *settingButton;
-@property (strong, nonatomic) IBOutlet UIButton *favouriteButton;
-@property (strong, nonatomic) IBOutlet UIButton *feedbackButton;
 
 - (IBAction)selectedCourseClicked:(id)sender;
 - (IBAction)solutionClicked:(id)sender;
@@ -31,10 +27,5 @@
 - (IBAction)generalCourseClicked:(id)sender;
 - (IBAction)activityClicked:(id)sender;
 - (IBAction)openCourseClicked:(id)sender;
-
-- (IBAction)shareClicked:(id)sender;
-- (IBAction)settingClicked:(id)sender;
-- (IBAction)favouriteClicked:(id)sender;
-- (IBAction)feedbackClicked:(id)sender;
 
 @end

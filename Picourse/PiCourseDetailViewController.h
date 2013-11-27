@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface PiCourseDetailViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UIWebView *detailWebView;
 
 @end

@@ -27,12 +27,20 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+		[_detailWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://121.199.60.94/web/detailPage/course.html?course=OpenCourse&id=10"]]];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+	
+
+}
+
+- (IBAction)back:(id)sender
+{
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

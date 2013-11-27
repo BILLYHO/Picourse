@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PiOpenCourseViewController">
+            <connections>
+                <outlet property="courseToolBar" destination="Il9-hV-1Ey" id="xqX-HX-CdS"/>
+                <outlet property="nameLabel" destination="QI1-DM-Tsg" id="SEe-E4-4NK"/>
+                <outlet property="piCollectionView" destination="Q3O-QD-XBf" id="uiF-7D-ucC"/>
+                <outlet property="view" destination="1" id="3"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sGd-ny-CVj">
+                    <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QI1-DM-Tsg">
+                            <rect key="frame" x="20" y="0.0" width="112" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                </view>
+                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Q3O-QD-XBf">
+                    <rect key="frame" x="0.0" y="62" width="320" height="462"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="53W-bN-UDN">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <cells/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="ZFa-vg-4Qc"/>
+                        <outlet property="delegate" destination="-1" id="52w-wT-aFb"/>
+                    </connections>
+                </collectionView>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Il9-hV-1Ey">
+                    <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <items>
+                        <barButtonItem image="Back.png" id="94R-aO-VtA">
+                            <connections>
+                                <action selector="back:" destination="-1" id="zwK-0s-Qm0"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem width="60" style="plain" systemItem="fixedSpace" id="LOY-Ny-Mey"/>
+                        <barButtonItem systemItem="action" id="fdd-Ps-0d0">
+                            <connections>
+                                <action selector="showTime:" destination="-1" id="mB8-uG-G19"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem width="60" style="plain" systemItem="fixedSpace" id="MA4-d1-08Z"/>
+                        <barButtonItem systemItem="action" id="T01-yP-Bc6">
+                            <connections>
+                                <action selector="showPlace:" destination="-1" id="8Qg-5l-hRX"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem width="60" style="plain" systemItem="fixedSpace" id="ebJ-C8-XBz"/>
+                        <barButtonItem systemItem="action" id="Y85-R4-FDj">
+                            <connections>
+                                <action selector="showMenu:" destination="-1" id="iqO-0G-7Dj"/>
+                            </connections>
+                        </barButtonItem>
+                    </items>
+                </toolbar>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Il9-hV-1Ey" secondAttribute="bottom" id="4Vq-QA-tCl"/>
+                <constraint firstItem="sGd-ny-CVj" firstAttribute="top" secondItem="1" secondAttribute="top" constant="20" id="6zI-FV-XBg"/>
+                <constraint firstItem="Il9-hV-1Ey" firstAttribute="top" secondItem="Q3O-QD-XBf" secondAttribute="bottom" id="kxp-Kc-O6m"/>
+                <constraint firstItem="Q3O-QD-XBf" firstAttribute="top" secondItem="1" secondAttribute="top" constant="62" id="voM-AA-NPC"/>
+            </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Back.png" width="13" height="21"/>
+    </resources>
+</document>

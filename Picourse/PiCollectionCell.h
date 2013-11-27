@@ -10,6 +10,8 @@
 
 @interface PiCollectionCell : UICollectionViewCell
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
-@property (strong, nonatomic) IBOutlet UILabel *detailLabel;
+@property (strong, nonatomic) IBOutlet UILabel *companyLabel;
+@property (strong, nonatomic) IBOutlet UILabel *dateNplaceLabel;
+
 
 @end

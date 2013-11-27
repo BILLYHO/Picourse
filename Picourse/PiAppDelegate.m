@@ -8,6 +8,8 @@
 
 #import "PiAppDelegate.h"
 #import "PiMainViewController.h"
+#import "PiNavigationController.h"
+#import "PiMenuViewController.h"
 
 #define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
 
@@ -18,17 +20,16 @@
     // Override point for customization after application launch.
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	[self.window makeKeyAndVisible];
-	PiMainViewController *mainview = [[PiMainViewController alloc]initWithNibName:@"PiMainViewController" bundle:nil];
-//	if (iPhone5)
-//	{
-//		mainview = [[PiMainViewController alloc]initWithNibName:@"PiMainViewController" bundle:nil];
-//	}
-//	else
-//	{
-//		mainview = [[PiMainViewController alloc]initWithNibName:@"PiMainViewController-3.5" bundle:nil];
-//	}
-	UINavigationController *view = [[UINavigationController alloc] initWithRootViewController:mainview];
-	[self.window setRootViewController:view];
+	PiMainViewController *mainView = [[PiMainViewController alloc]initWithNibName:@"PiMainViewController" bundle:nil];
+	PiNavigationController *navigationView = [[PiNavigationController alloc] initWithRootViewController:mainView];
+	
+    PiMenuViewController *menuController = [[PiMenuViewController alloc] initWithStyle:UITableViewStylePlain];
+    
+    REFrostedViewController *frostedViewController = [[REFrostedViewController alloc] initWithContentViewController:navigationView menuViewController:menuController];
+    frostedViewController.direction = REFrostedViewControllerDirectionLeft;
+    frostedViewController.liveBlurBackgroundStyle = REFrostedViewControllerLiveBackgroundStyleLight;
+    frostedViewController.delegate = self;
+	[self.window setRootViewController:frostedViewController];
     return YES;
 }
 							

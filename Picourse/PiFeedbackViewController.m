@@ -28,7 +28,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-	[self customNavigationBar];
+	UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didClickBackButton)];
+	[recognizer setDirection:UISwipeGestureRecognizerDirectionRight];
+	[self.view addGestureRecognizer:recognizer];
 }
 
 - (void)didReceiveMemoryWarning
@@ -37,16 +39,10 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Custom Navigation Bar
-- (void)customNavigationBar
-{
-	self.navigationItem.leftBarButtonItems = [UIBarButtonItem createEdgeButtonWithImage:[UIImage imageNamed:@"Back"] WithTarget:self action:@selector(didClickBackButton)];
-}
 
 #pragma mark - Back Button
 - (void)didClickBackButton
 {
-	self.navigationController.navigationBarHidden = YES;
     [self.navigationController popViewControllerAnimated:YES];
 }
 

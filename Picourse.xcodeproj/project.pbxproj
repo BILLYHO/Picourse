@@ -21,6 +21,8 @@
 		28083BC71805348D0003FF3D /* PiTopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28083BC61805348D0003FF3D /* PiTopCell.xib */; };
 		28083BCA18053CDE0003FF3D /* PiNormalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 28083BC918053CDE0003FF3D /* PiNormalCell.m */; };
 		28083BCC18053CF00003FF3D /* PiNormalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28083BCB18053CF00003FF3D /* PiNormalCell.xib */; };
+		281221F01842282A0039FEC4 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 281221EF1842282A0039FEC4 /* logo.png */; };
+		2820A3041844E94E00C3A42C /* 品课志logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2820A3031844E94E00C3A42C /* 品课志logo.jpg */; };
 		282640B61803F1900002519E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 282640B51803F1900002519E /* Foundation.framework */; };
 		282640B81803F1900002519E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 282640B71803F1900002519E /* CoreGraphics.framework */; };
 		282640BA1803F1900002519E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 282640B91803F1900002519E /* UIKit.framework */; };
@@ -35,8 +37,6 @@
 		282640E11803F1900002519E /* PicourseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 282640E01803F1900002519E /* PicourseTests.m */; };
 		282640F51803F2BE0002519E /* PiMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 282640F31803F2BE0002519E /* PiMainViewController.m */; };
 		282640F61803F2BE0002519E /* PiMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 282640F41803F2BE0002519E /* PiMainViewController.xib */; };
-		284F126418069AE500FF6351 /* PiCourseChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 284F126218069AE400FF6351 /* PiCourseChildViewController.m */; };
-		284F126518069AE500FF6351 /* PiCourseChildViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 284F126318069AE400FF6351 /* PiCourseChildViewController.xib */; };
 		284F12B41806C54900FF6351 /* PiCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 284F12B21806C54900FF6351 /* PiCollectionCell.m */; };
 		284F12B51806C54900FF6351 /* PiCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 284F12B31806C54900FF6351 /* PiCollectionCell.xib */; };
 		284F12C11806CEAA00FF6351 /* PiInfomationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 284F12BF1806CEAA00FF6351 /* PiInfomationViewController.m */; };
@@ -45,6 +45,23 @@
 		284F12C71806D8DB00FF6351 /* PiInfomationDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 284F12C51806D8DB00FF6351 /* PiInfomationDetailViewController.xib */; };
 		284F12CB1806D8FF00FF6351 /* PiCourseDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 284F12C91806D8FF00FF6351 /* PiCourseDetailViewController.m */; };
 		284F12CC1806D8FF00FF6351 /* PiCourseDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 284F12CA1806D8FF00FF6351 /* PiCourseDetailViewController.xib */; };
+		288E42C318212876004E5F82 /* PiBigCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 288E42C218212876004E5F82 /* PiBigCollectionCell.m */; };
+		288E42C518212894004E5F82 /* PiBigCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 288E42C418212894004E5F82 /* PiBigCollectionCell.xib */; };
+		288E42CE182235CE004E5F82 /* PiCourseLoadMoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 288E42CD182235CE004E5F82 /* PiCourseLoadMoreCell.m */; };
+		288E42D0182235E7004E5F82 /* PiCourseLoadMoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 288E42CF182235E7004E5F82 /* PiCourseLoadMoreCell.xib */; };
+		288E42D318223A05004E5F82 /* PiInfoLoadMoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 288E42D218223A05004E5F82 /* PiInfoLoadMoreCell.m */; };
+		288E42E118224F23004E5F82 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 288E42D618224F23004E5F82 /* RECommonFunctions.m */; };
+		288E42E218224F23004E5F82 /* REFrostedContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 288E42D818224F23004E5F82 /* REFrostedContainerViewController.m */; };
+		288E42E318224F23004E5F82 /* REFrostedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 288E42DA18224F23004E5F82 /* REFrostedViewController.m */; };
+		288E42E418224F23004E5F82 /* UIImage+REFrostedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 288E42DC18224F23004E5F82 /* UIImage+REFrostedViewController.m */; };
+		288E42E518224F23004E5F82 /* UIView+REFrostedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 288E42DE18224F23004E5F82 /* UIView+REFrostedViewController.m */; };
+		288E42E618224F23004E5F82 /* UIViewController+REFrostedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 288E42E018224F23004E5F82 /* UIViewController+REFrostedViewController.m */; };
+		288E42EE18227A3E004E5F82 /* avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 288E42ED18227A3E004E5F82 /* avatar.png */; };
+		288E42F1182286A1004E5F82 /* PiNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 288E42F0182286A1004E5F82 /* PiNavigationController.m */; };
+		288E42F418228BAF004E5F82 /* PiMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 288E42F318228BAF004E5F82 /* PiMenuViewController.m */; };
+		288E4301182358EE004E5F82 /* PiCollectionHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 288E4300182358EE004E5F82 /* PiCollectionHeaderCell.m */; };
+		288E430318235916004E5F82 /* PiCollectionHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 288E430218235916004E5F82 /* PiCollectionHeaderCell.xib */; };
+		288E430618239435004E5F82 /* KxMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 288E430518239435004E5F82 /* KxMenu.m */; };
 		28DDA0EE18042EC300D8A24F /* Activity.png in Resources */ = {isa = PBXBuildFile; fileRef = 28DDA0C618042EC300D8A24F /* Activity.png */; };
 		28DDA0EF18042EC300D8A24F /* Activity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 28DDA0C718042EC300D8A24F /* Activity@2x.png */; };
 		28DDA0F018042EC300D8A24F /* SeniorCourse.png in Resources */ = {isa = PBXBuildFile; fileRef = 28DDA0C818042EC300D8A24F /* SeniorCourse.png */; };
@@ -85,8 +102,8 @@
 		28DDA11318042EC300D8A24F /* Share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 28DDA0EB18042EC300D8A24F /* Share@2x.png */; };
 		28DDA11418042EC300D8A24F /* Solution.png in Resources */ = {isa = PBXBuildFile; fileRef = 28DDA0EC18042EC300D8A24F /* Solution.png */; };
 		28DDA11518042EC300D8A24F /* Solution@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 28DDA0ED18042EC300D8A24F /* Solution@2x.png */; };
-		28FF4D03181AB5AA00FBE5E0 /* PiMainScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FF4D02181AB5AA00FBE5E0 /* PiMainScrollViewController.m */; };
-		28FF4D05181AB5C700FBE5E0 /* PiMainScrollViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28FF4D04181AB5C700FBE5E0 /* PiMainScrollViewController.xib */; };
+		A92807BC1841A30F0055968D /* PiOpenCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A92807BA1841A30F0055968D /* PiOpenCourseViewController.m */; };
+		A92807BF1841A3EB0055968D /* PiOpenCourseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A92807BE1841A3EB0055968D /* PiOpenCourseViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +137,8 @@
 		28083BC818053CDE0003FF3D /* PiNormalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PiNormalCell.h; sourceTree = "<group>"; };
 		28083BC918053CDE0003FF3D /* PiNormalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PiNormalCell.m; sourceTree = "<group>"; };
 		28083BCB18053CF00003FF3D /* PiNormalCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PiNormalCell.xib; sourceTree = "<group>"; };
+		281221EF1842282A0039FEC4 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = ../logo.png; sourceTree = "<group>"; };
+		2820A3031844E94E00C3A42C /* 品课志logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "品课志logo.jpg"; sourceTree = "<group>"; };
 		282640B21803F1900002519E /* Picourse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Picourse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		282640B51803F1900002519E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		282640B71803F1900002519E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -139,9 +158,6 @@
 		282640F21803F2BE0002519E /* PiMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PiMainViewController.h; path = ../PiMainViewController.h; sourceTree = "<group>"; };
 		282640F31803F2BE0002519E /* PiMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PiMainViewController.m; path = ../PiMainViewController.m; sourceTree = "<group>"; };
 		282640F41803F2BE0002519E /* PiMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PiMainViewController.xib; path = ../PiMainViewController.xib; sourceTree = "<group>"; };
-		284F126118069AE400FF6351 /* PiCourseChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PiCourseChildViewController.h; sourceTree = "<group>"; };
-		284F126218069AE400FF6351 /* PiCourseChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PiCourseChildViewController.m; sourceTree = "<group>"; };
-		284F126318069AE400FF6351 /* PiCourseChildViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PiCourseChildViewController.xib; sourceTree = "<group>"; };
 		284F12B11806C54900FF6351 /* PiCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PiCollectionCell.h; sourceTree = "<group>"; };
 		284F12B21806C54900FF6351 /* PiCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PiCollectionCell.m; sourceTree = "<group>"; };
 		284F12B31806C54900FF6351 /* PiCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PiCollectionCell.xib; sourceTree = "<group>"; };
@@ -154,6 +170,36 @@
 		284F12C81806D8FF00FF6351 /* PiCourseDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PiCourseDetailViewController.h; sourceTree = "<group>"; };
 		284F12C91806D8FF00FF6351 /* PiCourseDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PiCourseDetailViewController.m; sourceTree = "<group>"; };
 		284F12CA1806D8FF00FF6351 /* PiCourseDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PiCourseDetailViewController.xib; sourceTree = "<group>"; };
+		288E42C118212876004E5F82 /* PiBigCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PiBigCollectionCell.h; sourceTree = "<group>"; };
+		288E42C218212876004E5F82 /* PiBigCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PiBigCollectionCell.m; sourceTree = "<group>"; };
+		288E42C418212894004E5F82 /* PiBigCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PiBigCollectionCell.xib; sourceTree = "<group>"; };
+		288E42CC182235CE004E5F82 /* PiCourseLoadMoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PiCourseLoadMoreCell.h; sourceTree = "<group>"; };
+		288E42CD182235CE004E5F82 /* PiCourseLoadMoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PiCourseLoadMoreCell.m; sourceTree = "<group>"; };
+		288E42CF182235E7004E5F82 /* PiCourseLoadMoreCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PiCourseLoadMoreCell.xib; sourceTree = "<group>"; };
+		288E42D118223A05004E5F82 /* PiInfoLoadMoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PiInfoLoadMoreCell.h; sourceTree = "<group>"; };
+		288E42D218223A05004E5F82 /* PiInfoLoadMoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PiInfoLoadMoreCell.m; sourceTree = "<group>"; };
+		288E42D518224F23004E5F82 /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
+		288E42D618224F23004E5F82 /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
+		288E42D718224F23004E5F82 /* REFrostedContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REFrostedContainerViewController.h; sourceTree = "<group>"; };
+		288E42D818224F23004E5F82 /* REFrostedContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REFrostedContainerViewController.m; sourceTree = "<group>"; };
+		288E42D918224F23004E5F82 /* REFrostedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REFrostedViewController.h; sourceTree = "<group>"; };
+		288E42DA18224F23004E5F82 /* REFrostedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REFrostedViewController.m; sourceTree = "<group>"; };
+		288E42DB18224F23004E5F82 /* UIImage+REFrostedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+REFrostedViewController.h"; sourceTree = "<group>"; };
+		288E42DC18224F23004E5F82 /* UIImage+REFrostedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+REFrostedViewController.m"; sourceTree = "<group>"; };
+		288E42DD18224F23004E5F82 /* UIView+REFrostedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+REFrostedViewController.h"; sourceTree = "<group>"; };
+		288E42DE18224F23004E5F82 /* UIView+REFrostedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+REFrostedViewController.m"; sourceTree = "<group>"; };
+		288E42DF18224F23004E5F82 /* UIViewController+REFrostedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+REFrostedViewController.h"; sourceTree = "<group>"; };
+		288E42E018224F23004E5F82 /* UIViewController+REFrostedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+REFrostedViewController.m"; sourceTree = "<group>"; };
+		288E42ED18227A3E004E5F82 /* avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar.png; sourceTree = "<group>"; };
+		288E42EF182286A1004E5F82 /* PiNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PiNavigationController.h; sourceTree = "<group>"; };
+		288E42F0182286A1004E5F82 /* PiNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PiNavigationController.m; sourceTree = "<group>"; };
+		288E42F218228BAF004E5F82 /* PiMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PiMenuViewController.h; sourceTree = "<group>"; };
+		288E42F318228BAF004E5F82 /* PiMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PiMenuViewController.m; sourceTree = "<group>"; };
+		288E42FF182358EE004E5F82 /* PiCollectionHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PiCollectionHeaderCell.h; sourceTree = "<group>"; };
+		288E4300182358EE004E5F82 /* PiCollectionHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PiCollectionHeaderCell.m; sourceTree = "<group>"; };
+		288E430218235916004E5F82 /* PiCollectionHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PiCollectionHeaderCell.xib; sourceTree = "<group>"; };
+		288E430418239435004E5F82 /* KxMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KxMenu.h; sourceTree = "<group>"; };
+		288E430518239435004E5F82 /* KxMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KxMenu.m; sourceTree = "<group>"; };
 		28DDA0C618042EC300D8A24F /* Activity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Activity.png; sourceTree = "<group>"; };
 		28DDA0C718042EC300D8A24F /* Activity@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Activity@2x.png"; sourceTree = "<group>"; };
 		28DDA0C818042EC300D8A24F /* SeniorCourse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SeniorCourse.png; sourceTree = "<group>"; };
@@ -194,9 +240,9 @@
 		28DDA0EB18042EC300D8A24F /* Share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Share@2x.png"; sourceTree = "<group>"; };
 		28DDA0EC18042EC300D8A24F /* Solution.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Solution.png; sourceTree = "<group>"; };
 		28DDA0ED18042EC300D8A24F /* Solution@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Solution@2x.png"; sourceTree = "<group>"; };
-		28FF4D01181AB5AA00FBE5E0 /* PiMainScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PiMainScrollViewController.h; sourceTree = "<group>"; };
-		28FF4D02181AB5AA00FBE5E0 /* PiMainScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PiMainScrollViewController.m; sourceTree = "<group>"; };
-		28FF4D04181AB5C700FBE5E0 /* PiMainScrollViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PiMainScrollViewController.xib; sourceTree = "<group>"; };
+		A92807B91841A30F0055968D /* PiOpenCourseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PiOpenCourseViewController.h; sourceTree = "<group>"; };
+		A92807BA1841A30F0055968D /* PiOpenCourseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PiOpenCourseViewController.m; sourceTree = "<group>"; };
+		A92807BE1841A3EB0055968D /* PiOpenCourseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PiOpenCourseViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,9 +278,20 @@
 				28083BC818053CDE0003FF3D /* PiNormalCell.h */,
 				28083BC918053CDE0003FF3D /* PiNormalCell.m */,
 				28083BCB18053CF00003FF3D /* PiNormalCell.xib */,
+				288E42D118223A05004E5F82 /* PiInfoLoadMoreCell.h */,
+				288E42D218223A05004E5F82 /* PiInfoLoadMoreCell.m */,
 				284F12B11806C54900FF6351 /* PiCollectionCell.h */,
 				284F12B21806C54900FF6351 /* PiCollectionCell.m */,
 				284F12B31806C54900FF6351 /* PiCollectionCell.xib */,
+				288E42C118212876004E5F82 /* PiBigCollectionCell.h */,
+				288E42C218212876004E5F82 /* PiBigCollectionCell.m */,
+				288E42C418212894004E5F82 /* PiBigCollectionCell.xib */,
+				288E42CC182235CE004E5F82 /* PiCourseLoadMoreCell.h */,
+				288E42CD182235CE004E5F82 /* PiCourseLoadMoreCell.m */,
+				288E42CF182235E7004E5F82 /* PiCourseLoadMoreCell.xib */,
+				288E42FF182358EE004E5F82 /* PiCollectionHeaderCell.h */,
+				288E4300182358EE004E5F82 /* PiCollectionHeaderCell.m */,
+				288E430218235916004E5F82 /* PiCollectionHeaderCell.xib */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -274,14 +331,17 @@
 			children = (
 				28083BB918050D1F0003FF3D /* UIBarButtonItem+ProjectButton.h */,
 				28083BBA18050D1F0003FF3D /* UIBarButtonItem+ProjectButton.m */,
+				288E43071823943A004E5F82 /* KxMenu */,
+				288E42D418224F23004E5F82 /* REFrostedViewController */,
 				282640C41803F1900002519E /* PiAppDelegate.h */,
 				282640C51803F1900002519E /* PiAppDelegate.m */,
+				288E42F218228BAF004E5F82 /* PiMenuViewController.h */,
+				288E42F318228BAF004E5F82 /* PiMenuViewController.m */,
+				288E42EF182286A1004E5F82 /* PiNavigationController.h */,
+				288E42F0182286A1004E5F82 /* PiNavigationController.m */,
 				282640F21803F2BE0002519E /* PiMainViewController.h */,
 				282640F31803F2BE0002519E /* PiMainViewController.m */,
 				282640F41803F2BE0002519E /* PiMainViewController.xib */,
-				28FF4D01181AB5AA00FBE5E0 /* PiMainScrollViewController.h */,
-				28FF4D02181AB5AA00FBE5E0 /* PiMainScrollViewController.m */,
-				28FF4D04181AB5C700FBE5E0 /* PiMainScrollViewController.xib */,
 				28FF4CFD181AB37A00FBE5E0 /* Infomation */,
 				28FF4CFC181AB36600FBE5E0 /* Course */,
 				28FF4CFB181AB34700FBE5E0 /* Setting */,
@@ -322,12 +382,43 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		288E42D418224F23004E5F82 /* REFrostedViewController */ = {
+			isa = PBXGroup;
+			children = (
+				288E42D518224F23004E5F82 /* RECommonFunctions.h */,
+				288E42D618224F23004E5F82 /* RECommonFunctions.m */,
+				288E42D718224F23004E5F82 /* REFrostedContainerViewController.h */,
+				288E42D818224F23004E5F82 /* REFrostedContainerViewController.m */,
+				288E42D918224F23004E5F82 /* REFrostedViewController.h */,
+				288E42DA18224F23004E5F82 /* REFrostedViewController.m */,
+				288E42DB18224F23004E5F82 /* UIImage+REFrostedViewController.h */,
+				288E42DC18224F23004E5F82 /* UIImage+REFrostedViewController.m */,
+				288E42DD18224F23004E5F82 /* UIView+REFrostedViewController.h */,
+				288E42DE18224F23004E5F82 /* UIView+REFrostedViewController.m */,
+				288E42DF18224F23004E5F82 /* UIViewController+REFrostedViewController.h */,
+				288E42E018224F23004E5F82 /* UIViewController+REFrostedViewController.m */,
+			);
+			path = REFrostedViewController;
+			sourceTree = "<group>";
+		};
+		288E43071823943A004E5F82 /* KxMenu */ = {
+			isa = PBXGroup;
+			children = (
+				288E430418239435004E5F82 /* KxMenu.h */,
+				288E430518239435004E5F82 /* KxMenu.m */,
+			);
+			name = KxMenu;
+			sourceTree = "<group>";
+		};
 		28DDA0C518042EC300D8A24F /* pic */ = {
 			isa = PBXGroup;
 			children = (
 				28083BC018052F280003FF3D /* background.jpg */,
 				28083BBC18052CB30003FF3D /* background@2x.jpg */,
 				28083BBD18052CB30003FF3D /* ted.jpg */,
+				2820A3031844E94E00C3A42C /* 品课志logo.jpg */,
+				281221EF1842282A0039FEC4 /* logo.png */,
+				288E42ED18227A3E004E5F82 /* avatar.png */,
 				28DDA0C618042EC300D8A24F /* Activity.png */,
 				28DDA0C718042EC300D8A24F /* Activity@2x.png */,
 				28DDA0C818042EC300D8A24F /* SeniorCourse.png */,
@@ -391,9 +482,9 @@
 				28083BAA1804ED090003FF3D /* PiCourseViewController.h */,
 				28083BAB1804ED090003FF3D /* PiCourseViewController.m */,
 				28083BAC1804ED090003FF3D /* PiCourseViewController.xib */,
-				284F126118069AE400FF6351 /* PiCourseChildViewController.h */,
-				284F126218069AE400FF6351 /* PiCourseChildViewController.m */,
-				284F126318069AE400FF6351 /* PiCourseChildViewController.xib */,
+				A92807B91841A30F0055968D /* PiOpenCourseViewController.h */,
+				A92807BA1841A30F0055968D /* PiOpenCourseViewController.m */,
+				A92807BE1841A3EB0055968D /* PiOpenCourseViewController.xib */,
 				284F12C81806D8FF00FF6351 /* PiCourseDetailViewController.h */,
 				284F12C91806D8FF00FF6351 /* PiCourseDetailViewController.m */,
 				284F12CA1806D8FF00FF6351 /* PiCourseDetailViewController.xib */,
@@ -462,6 +553,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "BILLY HO";
 				TargetAttributes = {
+					282640B11803F1900002519E = {
+						DevelopmentTeam = RA5C3AK99B;
+					};
 					282640D21803F1900002519E = {
 						TestTargetID = 282640B11803F1900002519E;
 					};
@@ -491,11 +585,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A92807BF1841A3EB0055968D /* PiOpenCourseViewController.xib in Resources */,
 				28DDA0FF18042EC300D8A24F /* Infomatiom@2x.png in Resources */,
+				281221F01842282A0039FEC4 /* logo.png in Resources */,
 				28DDA10118042EC300D8A24F /* List@2x.png in Resources */,
 				284F12B51806C54900FF6351 /* PiCollectionCell.xib in Resources */,
 				28DDA10B18042EC300D8A24F /* Refresh@2x.png in Resources */,
 				28083BCC18053CF00003FF3D /* PiNormalCell.xib in Resources */,
+				288E42D0182235E7004E5F82 /* PiCourseLoadMoreCell.xib in Resources */,
 				28DDA0FC18042EC300D8A24F /* Home.png in Resources */,
 				28083BB8180508250003FF3D /* PiFeedbackViewController.xib in Resources */,
 				28DDA0F918042EC300D8A24F /* Favourite@2x.png in Resources */,
@@ -506,6 +603,7 @@
 				28DDA10818042EC300D8A24F /* Perspective.png in Resources */,
 				28DDA0F618042EC300D8A24F /* Favourite.png in Resources */,
 				28DDA0F118042EC300D8A24F /* SeniorCourse@2x.png in Resources */,
+				288E430318235916004E5F82 /* PiCollectionHeaderCell.xib in Resources */,
 				28DDA10D18042EC300D8A24F /* SelectedCourse@2x.png in Resources */,
 				28DDA0FA18042EC300D8A24F /* Feedback.png in Resources */,
 				28DDA0F718042EC300D8A24F /* Favourite2.png in Resources */,
@@ -530,22 +628,23 @@
 				28DDA0FB18042EC300D8A24F /* Feedback@2x.png in Resources */,
 				284F12C21806CEAA00FF6351 /* PiInfomationViewController.xib in Resources */,
 				28DDA10018042EC300D8A24F /* List.png in Resources */,
-				284F126518069AE500FF6351 /* PiCourseChildViewController.xib in Resources */,
 				28DDA0EE18042EC300D8A24F /* Activity.png in Resources */,
 				282640CE1803F1900002519E /* Images.xcassets in Resources */,
 				28083BC71805348D0003FF3D /* PiTopCell.xib in Resources */,
 				28DDA0FE18042EC300D8A24F /* Infomatiom.png in Resources */,
-				28FF4D05181AB5C700FBE5E0 /* PiMainScrollViewController.xib in Resources */,
+				2820A3041844E94E00C3A42C /* 品课志logo.jpg in Resources */,
 				28DDA11518042EC300D8A24F /* Solution@2x.png in Resources */,
 				28DDA0F218042EC300D8A24F /* Back.png in Resources */,
 				28DDA10518042EC300D8A24F /* Phone@2x.png in Resources */,
 				282640C01803F1900002519E /* InfoPlist.strings in Resources */,
 				282640F61803F2BE0002519E /* PiMainViewController.xib in Resources */,
 				28DDA0F418042EC300D8A24F /* GeneralCourse.png in Resources */,
+				288E42C518212894004E5F82 /* PiBigCollectionCell.xib in Resources */,
 				28DDA11018042EC300D8A24F /* Share.png in Resources */,
 				28DDA10218042EC300D8A24F /* OpenCourse.png in Resources */,
 				28DDA0F318042EC300D8A24F /* Back@2x.png in Resources */,
 				28083BBE18052CB30003FF3D /* background@2x.jpg in Resources */,
+				288E42EE18227A3E004E5F82 /* avatar.png in Resources */,
 				28DDA0EF18042EC300D8A24F /* Activity@2x.png in Resources */,
 				28DDA0F818042EC300D8A24F /* Favourite2@2x.png in Resources */,
 			);
@@ -568,19 +667,31 @@
 			files = (
 				28083BAD1804ED090003FF3D /* PiCourseViewController.m in Sources */,
 				282640C21803F1900002519E /* main.m in Sources */,
+				288E4301182358EE004E5F82 /* PiCollectionHeaderCell.m in Sources */,
+				288E42E318224F23004E5F82 /* REFrostedViewController.m in Sources */,
 				28083BB2180508170003FF3D /* PiSettingViewController.m in Sources */,
+				A92807BC1841A30F0055968D /* PiOpenCourseViewController.m in Sources */,
+				288E42F1182286A1004E5F82 /* PiNavigationController.m in Sources */,
+				288E42E218224F23004E5F82 /* REFrostedContainerViewController.m in Sources */,
+				288E42F418228BAF004E5F82 /* PiMenuViewController.m in Sources */,
 				282640F51803F2BE0002519E /* PiMainViewController.m in Sources */,
+				288E42E418224F23004E5F82 /* UIImage+REFrostedViewController.m in Sources */,
 				28083BC5180534760003FF3D /* PiTopCell.m in Sources */,
-				284F126418069AE500FF6351 /* PiCourseChildViewController.m in Sources */,
 				284F12B41806C54900FF6351 /* PiCollectionCell.m in Sources */,
+				288E42C318212876004E5F82 /* PiBigCollectionCell.m in Sources */,
 				284F12CB1806D8FF00FF6351 /* PiCourseDetailViewController.m in Sources */,
-				28FF4D03181AB5AA00FBE5E0 /* PiMainScrollViewController.m in Sources */,
 				284F12C11806CEAA00FF6351 /* PiInfomationViewController.m in Sources */,
 				28083BB7180508250003FF3D /* PiFeedbackViewController.m in Sources */,
+				288E42E118224F23004E5F82 /* RECommonFunctions.m in Sources */,
 				284F12C61806D8DB00FF6351 /* PiInfomationDetailViewController.m in Sources */,
+				288E42E618224F23004E5F82 /* UIViewController+REFrostedViewController.m in Sources */,
 				282640C61803F1900002519E /* PiAppDelegate.m in Sources */,
+				288E42CE182235CE004E5F82 /* PiCourseLoadMoreCell.m in Sources */,
 				28083BBB18050D1F0003FF3D /* UIBarButtonItem+ProjectButton.m in Sources */,
+				288E42E518224F23004E5F82 /* UIView+REFrostedViewController.m in Sources */,
 				28083BCA18053CDE0003FF3D /* PiNormalCell.m in Sources */,
+				288E42D318223A05004E5F82 /* PiInfoLoadMoreCell.m in Sources */,
+				288E430618239435004E5F82 /* KxMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -697,12 +808,14 @@
 		282640E51803F1900002519E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Picourse/Picourse-Prefix.pch";
 				INFOPLIST_FILE = "Picourse/Picourse-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -710,12 +823,14 @@
 		282640E61803F1900002519E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Picourse/Picourse-Prefix.pch";
 				INFOPLIST_FILE = "Picourse/Picourse-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

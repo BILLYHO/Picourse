@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PiMainViewController">
             <connections>
-                <outlet property="activityButton" destination="d4T-A5-hVO" id="MDs-p3-4eR"/>
-                <outlet property="favouriteButton" destination="apX-Kh-KMb" id="LXq-1B-Pho"/>
-                <outlet property="feedbackButton" destination="lRq-9j-Ks5" id="zOG-sc-8y7"/>
-                <outlet property="generalCourseButton" destination="DYa-1u-nBu" id="yAW-CG-xSX"/>
-                <outlet property="infomationButton" destination="UqY-Sj-5gH" id="0sz-5t-EsW"/>
-                <outlet property="openCourseButton" destination="C2d-RS-CFq" id="EuR-ou-rdG"/>
-                <outlet property="perspectiveButton" destination="OAZ-8J-eSz" id="mIY-Kd-6ia"/>
-                <outlet property="selectedCourseButton" destination="xYz-5J-vcc" id="tR6-65-CT0"/>
-                <outlet property="seniorCourseButton" destination="PLe-mr-jeK" id="qrB-Op-57n"/>
-                <outlet property="settingButton" destination="NA8-EM-cnR" id="SjW-ss-j1i"/>
-                <outlet property="shareButtom" destination="LpO-YW-ubK" id="smE-S8-gnM"/>
-                <outlet property="solutionButton" destination="jGr-MK-wD1" id="PUw-cO-VzA"/>
+                <outlet property="activityButton" destination="C2d-RS-CFq" id="BA0-AP-65P"/>
+                <outlet property="generalCourseButton" destination="OAZ-8J-eSz" id="M4e-iC-jSH"/>
+                <outlet property="infomationButton" destination="d4T-A5-hVO" id="Key-AX-7Qn"/>
+                <outlet property="openCourseButton" destination="UqY-Sj-5gH" id="LPU-6a-idS"/>
+                <outlet property="perspectiveButton" destination="DYa-1u-nBu" id="GrX-0f-VwM"/>
+                <outlet property="selectedCourseButton" destination="xYz-5J-vcc" id="4os-rw-g7b"/>
+                <outlet property="seniorCourseButton" destination="jGr-MK-wD1" id="MZ3-Vl-ZAb"/>
+                <outlet property="solutionButton" destination="PLe-mr-jeK" id="t7W-TI-oH0"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -30,145 +26,167 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Picourse.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ryt-z8-dK7">
-                    <rect key="frame" x="20" y="42" width="170" height="30"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="Picourse.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ryt-z8-dK7">
+                    <rect key="frame" x="50" y="40" width="171" height="29"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="171" id="6ee-NR-kyz"/>
+                        <constraint firstAttribute="height" constant="29" id="QOC-fR-B78"/>
+                    </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="TopLeft" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xYz-5J-vcc">
-                    <rect key="frame" x="20" y="98" width="100" height="100"/>
+                <button opaque="NO" contentMode="TopLeft" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xYz-5J-vcc">
+                    <rect key="frame" x="50" y="100" width="100" height="100"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="1CP-HF-2mi"/>
+                        <constraint firstAttribute="height" constant="100" id="FxE-iP-iQH"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                     <state key="normal" title="Button"/>
                     <connections>
-                        <action selector="selectedCourseClicked:" destination="-1" eventType="touchUpInside" id="0hs-UH-wif"/>
+                        <action selector="selectedCourseClicked:" destination="-1" eventType="touchUpInside" id="5q2-Y7-uQL"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="TopLeft" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OAZ-8J-eSz">
-                    <rect key="frame" x="20" y="206" width="100" height="100"/>
+                <button opaque="NO" contentMode="TopLeft" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OAZ-8J-eSz">
+                    <rect key="frame" x="50" y="210" width="100" height="100"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="7eL-ta-jV4"/>
+                        <constraint firstAttribute="width" constant="100" id="zhU-vi-N1p"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                     <state key="normal" title="Button"/>
                     <connections>
-                        <action selector="perspectiveClicked:" destination="-1" eventType="touchUpInside" id="FXt-Wt-RhG"/>
+                        <action selector="generalCourseClicked:" destination="-1" eventType="touchUpInside" id="Dtc-rX-d2X"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="TopLeft" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PLe-mr-jeK">
-                    <rect key="frame" x="20" y="314" width="100" height="100"/>
+                <button opaque="NO" contentMode="TopLeft" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PLe-mr-jeK">
+                    <rect key="frame" x="50" y="320" width="100" height="100"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="NrF-cN-KvZ"/>
+                        <constraint firstAttribute="width" constant="100" id="ukf-3Y-aZf"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                     <state key="normal" title="Button"/>
                     <connections>
-                        <action selector="seniorCourseClicked:" destination="-1" eventType="touchUpInside" id="rlp-8f-EbA"/>
+                        <action selector="solutionClicked:" destination="-1" eventType="touchUpInside" id="5N4-9K-JZB"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="TopLeft" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4T-A5-hVO">
-                    <rect key="frame" x="20" y="422" width="100" height="100"/>
+                <button opaque="NO" contentMode="TopLeft" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4T-A5-hVO">
+                    <rect key="frame" x="50" y="430" width="100" height="100"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="4Vy-SA-zHv"/>
+                        <constraint firstAttribute="height" constant="100" id="jsU-VS-V8C"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                     <state key="normal" title="Button"/>
                     <connections>
-                        <action selector="activityClicked:" destination="-1" eventType="touchUpInside" id="Ifa-Ze-DDe"/>
+                        <action selector="infoClicked:" destination="-1" eventType="touchUpInside" id="csl-m0-d63"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="TopLeft" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C2d-RS-CFq">
-                    <rect key="frame" x="150" y="422" width="100" height="100"/>
+                <button opaque="NO" contentMode="TopLeft" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C2d-RS-CFq">
+                    <rect key="frame" x="170" y="430" width="100" height="100"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="CGU-eR-38Q"/>
+                        <constraint firstAttribute="height" constant="100" id="EBc-su-UFQ"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                     <state key="normal" title="Button"/>
                     <connections>
-                        <action selector="openCourseClicked:" destination="-1" eventType="touchUpInside" id="LxK-L5-dva"/>
+                        <action selector="activityClicked:" destination="-1" eventType="touchUpInside" id="pck-fB-Rwe"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="TopLeft" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DYa-1u-nBu">
-                    <rect key="frame" x="150" y="314" width="100" height="100"/>
+                <button opaque="NO" contentMode="TopLeft" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DYa-1u-nBu">
+                    <rect key="frame" x="170" y="320" width="100" height="100"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="7WV-AR-H0g"/>
+                        <constraint firstAttribute="height" constant="100" id="nwa-Sw-JaN"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                     <state key="normal" title="Button"/>
                     <connections>
-                        <action selector="generalCourseClicked:" destination="-1" eventType="touchUpInside" id="DKQ-RT-B1m"/>
+                        <action selector="perspectiveClicked:" destination="-1" eventType="touchUpInside" id="C1I-ts-sh8"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="TopLeft" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UqY-Sj-5gH">
-                    <rect key="frame" x="150" y="206" width="100" height="100"/>
+                <button opaque="NO" contentMode="TopLeft" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UqY-Sj-5gH">
+                    <rect key="frame" x="170" y="210" width="100" height="100"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="Es8-hk-Y3Y"/>
+                        <constraint firstAttribute="height" constant="100" id="xRU-2y-pEK"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                     <state key="normal" title="Button"/>
                     <connections>
-                        <action selector="infoClicked:" destination="-1" eventType="touchUpInside" id="1pm-iN-YZu"/>
+                        <action selector="openCourseClicked:" destination="-1" eventType="touchUpInside" id="6n0-27-NoN"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="TopLeft" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jGr-MK-wD1">
-                    <rect key="frame" x="150" y="98" width="100" height="100"/>
+                <button opaque="NO" contentMode="TopLeft" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jGr-MK-wD1">
+                    <rect key="frame" x="170" y="100" width="100" height="100"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="Iss-Vl-ppz"/>
+                        <constraint firstAttribute="height" constant="100" id="iNZ-am-MPn"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                     <state key="normal" title="Button"/>
                     <connections>
-                        <action selector="solutionClicked:" destination="-1" eventType="touchUpInside" id="0xJ-7s-Kje"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LpO-YW-ubK">
-                    <rect key="frame" x="270" y="349" width="30" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <state key="normal" image="Share.png">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="shareClicked:" destination="-1" eventType="touchUpInside" id="plY-mS-vfV"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NA8-EM-cnR">
-                    <rect key="frame" x="270" y="387" width="30" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <state key="normal" image="Setting.png">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="settingClicked:" destination="-1" eventType="touchUpInside" id="glf-Xl-Phl"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="apX-Kh-KMb">
-                    <rect key="frame" x="270" y="425" width="30" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <state key="normal" image="Favourite.png">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="favouriteClicked:" destination="-1" eventType="touchUpInside" id="Ej1-Bj-Idr"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lRq-9j-Ks5">
-                    <rect key="frame" x="270" y="463" width="30" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <state key="normal" image="Feedback.png">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="feedbackClicked:" destination="-1" eventType="touchUpInside" id="c9J-0f-upN"/>
+                        <action selector="seniorCourseClicked:" destination="-1" eventType="touchUpInside" id="bgM-ZY-ap1"/>
                     </connections>
                 </button>
             </subviews>
+            <constraints>
+                <constraint firstItem="d4T-A5-hVO" firstAttribute="leading" secondItem="PLe-mr-jeK" secondAttribute="leading" id="0R6-hT-gdO"/>
+                <constraint firstItem="d4T-A5-hVO" firstAttribute="leading" secondItem="OAZ-8J-eSz" secondAttribute="leading" id="1FO-z5-22t"/>
+                <constraint firstItem="C2d-RS-CFq" firstAttribute="leading" secondItem="d4T-A5-hVO" secondAttribute="trailing" constant="20" id="3at-OZ-I2t"/>
+                <constraint firstItem="d4T-A5-hVO" firstAttribute="leading" secondItem="xYz-5J-vcc" secondAttribute="leading" id="3oR-dW-VQg"/>
+                <constraint firstItem="xYz-5J-vcc" firstAttribute="top" secondItem="jGr-MK-wD1" secondAttribute="top" id="497-sH-Kq3"/>
+                <constraint firstItem="DYa-1u-nBu" firstAttribute="top" relation="greaterThanOrEqual" secondItem="UqY-Sj-5gH" secondAttribute="bottom" constant="5" id="6fU-hW-kIh"/>
+                <constraint firstItem="jGr-MK-wD1" firstAttribute="leading" secondItem="xYz-5J-vcc" secondAttribute="trailing" constant="20" id="76v-fk-us0"/>
+                <constraint firstItem="OAZ-8J-eSz" firstAttribute="bottom" secondItem="UqY-Sj-5gH" secondAttribute="bottom" id="7WV-1R-yMl"/>
+                <constraint firstItem="d4T-A5-hVO" firstAttribute="bottom" secondItem="C2d-RS-CFq" secondAttribute="bottom" id="8XD-Vf-buR"/>
+                <constraint firstItem="DYa-1u-nBu" firstAttribute="leading" secondItem="UqY-Sj-5gH" secondAttribute="leading" id="D25-0s-ufF"/>
+                <constraint firstItem="C2d-RS-CFq" firstAttribute="top" relation="greaterThanOrEqual" secondItem="DYa-1u-nBu" secondAttribute="bottom" constant="5" id="G2F-aB-6yt"/>
+                <constraint firstItem="xYz-5J-vcc" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Ryt-z8-dK7" secondAttribute="bottom" constant="5" id="HzZ-2E-yGF"/>
+                <constraint firstItem="DYa-1u-nBu" firstAttribute="top" relation="greaterThanOrEqual" secondItem="UqY-Sj-5gH" secondAttribute="bottom" constant="5" id="Jb9-cb-q4a"/>
+                <constraint firstItem="OAZ-8J-eSz" firstAttribute="top" secondItem="UqY-Sj-5gH" secondAttribute="top" id="Ktz-DN-RB6"/>
+                <constraint firstItem="d4T-A5-hVO" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="50" id="OlR-0N-vQ4"/>
+                <constraint firstItem="C2d-RS-CFq" firstAttribute="top" relation="greaterThanOrEqual" secondItem="DYa-1u-nBu" secondAttribute="bottom" constant="5" id="QHd-xV-mA5"/>
+                <constraint firstItem="OAZ-8J-eSz" firstAttribute="top" relation="greaterThanOrEqual" secondItem="xYz-5J-vcc" secondAttribute="bottom" constant="5" id="ReN-5I-12m"/>
+                <constraint firstItem="d4T-A5-hVO" firstAttribute="trailing" secondItem="PLe-mr-jeK" secondAttribute="trailing" id="TLf-P9-q7q"/>
+                <constraint firstItem="PLe-mr-jeK" firstAttribute="top" relation="greaterThanOrEqual" secondItem="OAZ-8J-eSz" secondAttribute="bottom" constant="5" id="bA2-UX-VVs"/>
+                <constraint firstItem="d4T-A5-hVO" firstAttribute="top" secondItem="C2d-RS-CFq" secondAttribute="top" id="e3X-FY-YmX"/>
+                <constraint firstItem="Ryt-z8-dK7" firstAttribute="top" relation="greaterThanOrEqual" secondItem="1" secondAttribute="top" constant="22" id="fKX-Yg-y5g"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="d4T-A5-hVO" secondAttribute="bottom" constant="8" id="fyA-9X-fI5"/>
+                <constraint firstItem="d4T-A5-hVO" firstAttribute="top" relation="greaterThanOrEqual" secondItem="PLe-mr-jeK" secondAttribute="bottom" constant="5" id="gkj-8S-FzM"/>
+                <constraint firstItem="OAZ-8J-eSz" firstAttribute="top" relation="greaterThanOrEqual" secondItem="xYz-5J-vcc" secondAttribute="bottom" constant="5" id="h7T-AO-mOg"/>
+                <constraint firstItem="xYz-5J-vcc" firstAttribute="bottom" secondItem="jGr-MK-wD1" secondAttribute="bottom" id="hWH-6s-5LK"/>
+                <constraint firstItem="d4T-A5-hVO" firstAttribute="leading" secondItem="Ryt-z8-dK7" secondAttribute="leading" id="hhb-kd-6iK"/>
+                <constraint firstItem="DYa-1u-nBu" firstAttribute="baseline" secondItem="PLe-mr-jeK" secondAttribute="baseline" id="jn0-q9-Yzy"/>
+                <constraint firstItem="C2d-RS-CFq" firstAttribute="top" relation="greaterThanOrEqual" secondItem="DYa-1u-nBu" secondAttribute="bottom" constant="5" id="krJ-pg-dlz"/>
+                <constraint firstItem="d4T-A5-hVO" firstAttribute="trailing" secondItem="xYz-5J-vcc" secondAttribute="trailing" id="l9D-IA-k7c"/>
+                <constraint firstItem="xYz-5J-vcc" firstAttribute="top" relation="greaterThanOrEqual" secondItem="1" secondAttribute="top" constant="50" id="ru7-7G-Zrk"/>
+                <constraint firstItem="UqY-Sj-5gH" firstAttribute="leading" secondItem="OAZ-8J-eSz" secondAttribute="trailing" constant="20" id="rug-Ih-9bT"/>
+                <constraint firstItem="DYa-1u-nBu" firstAttribute="top" relation="greaterThanOrEqual" secondItem="UqY-Sj-5gH" secondAttribute="bottom" constant="5" id="wh1-hb-DJG"/>
+            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
     <resources>
-        <image name="Favourite.png" width="23" height="24"/>
-        <image name="Feedback.png" width="23" height="24"/>
         <image name="Picourse.png" width="171" height="29"/>
-        <image name="Setting.png" width="23" height="24"/>
-        <image name="Share.png" width="23" height="24"/>
         <image name="background.jpg" width="320" height="568"/>
     </resources>
 </document>

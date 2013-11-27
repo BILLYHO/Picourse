@@ -11,8 +11,12 @@
 #import "PiTopCell.h"
 #import "PiNormalCell.h"
 #import "PiInfomationDetailViewController.h"
+#import "KxMenu.h"
 
+
+#define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
 #define base_url @"http://121.199.60.94/picourse/index.php/"
+#define aRGB(r,g,b,a) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a/1.0f]
 
 @interface PiInfomationViewController ()
 
@@ -22,7 +26,8 @@
 
 static NSString *topCellIdentifier = @"TopCell";
 static NSString *normalCellIdentifier = @"NormalCell";
-int cellNum = 5;
+static NSString *loadMoreCell = @"LoadMoreCell";
+int infoCellNum = 0;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,6 +35,7 @@ int cellNum = 5;
     if (self) {
         // Custom initialization
     }
+	
     return self;
 }
 
@@ -37,12 +43,24 @@ int cellNum = 5;
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-	[self customNavigationBar];
+	infoCellNum = 0;
+	[self.tableView reloadData];
+	_categoryLabel.text = _infoName;
+//    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    //80	168	210
+    self.categoryLabel.backgroundColor = aRGB(97, 183, 218, 1);
+    self.backButton.image = [UIImage imageNamed:@"Back.png"];
+    
+    //83	172	220
 	
 	UINib *topnib = [UINib nibWithNibName:@"PiTopCell" bundle:nil];
 	[self.tableView registerNib:topnib forCellReuseIdentifier:topCellIdentifier];
 	UINib *normalnib = [UINib nibWithNibName:@"PiNormalCell" bundle:nil];
 	[self.tableView registerNib:normalnib forCellReuseIdentifier:normalCellIdentifier];
+	
+	UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didClickBackButton)];
+	[recognizer setDirection:UISwipeGestureRecognizerDirectionRight];
+	[self.tableView addGestureRecognizer:recognizer];
 	
 }
 
@@ -52,99 +70,78 @@ int cellNum = 5;
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Custom Navigation Bar
-- (void)customNavigationBar
-{
-	self.navigationItem.leftBarButtonItems = [UIBarButtonItem createEdgeButtonWithImage:[UIImage imageNamed:@"Back"] WithTarget:self action:@selector(didClickBackButton)];
-}
-
 #pragma mark - Back Button
 - (void)didClickBackButton
 {
-	self.navigationController.navigationBarHidden = YES;
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+- (IBAction)back:(id)sender
+{
+	 [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - Load Data
+- (NSArray *)loadDataAtPage:(int)page
+{
+	NSError *error;
+	NSString *urlString = [base_url stringByAppendingString:
+						   [NSString stringWithFormat:@"%@/get%@ByPage/page_num/%d",_category,_category,page]];
+	NSURL *url = [NSURL URLWithString:urlString];
+	NSURLRequest *request = [NSURLRequest requestWithURL:url];
+	NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+	NSDictionary *infoDic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableLeaves error:&error];
+	NSArray *infoArr = [infoDic objectForKey:@"data"];
+	return infoArr;
+}
+
+
+
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-	return 2;
+	return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0)
-		return cellNum;
+    if (infoCellNum != 0)
+		return infoCellNum;
 	else
-		return 1;//5;//rand()%10+2;
+	{
+		infoCellNum = [_itemPerPage intValue];
+		return infoCellNum;
+	}
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	int num = 0;
-	if ([_category isEqualToString:@"SelectedCourse"])
-	{
-		num = 7 + indexPath.row % 5;
-	}
-	if ([_category isEqualToString:@"SolutionInfo"] || [_category isEqualToString:@"ViewInfo"])
-	{
-		num = 1;
-	}
-	if ([_category isEqualToString:@"NewsInfo"] || [_category isEqualToString:@"AcInfo"])
-	{
-		num = 1 + indexPath.row % 5;
-	}
 	
-	//fetch data from the server
-    NSError *error;
-    //加载一个NSURL对象
-    NSString *urlString = [base_url stringByAppendingString:
-						   [NSString stringWithFormat:@"%@/get%@ById/id/%d",_category,_category,num]];
-    
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    //将请求的url数据放到NSData对象中
-    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-    //IOS5自带解析类NSJSONSerialization从response中解析出数据放到字典中
-    NSDictionary *courseDic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableLeaves error:&error];
-    NSArray *courseArr = [courseDic objectForKey:@"data"];
-	NSDictionary *courseInfo = [courseArr objectAtIndex:0];
-
-
-	NSString *title, *content;
-	if ([_category isEqualToString:@"SelectedCourse"])
+    if (indexPath.section == 0 && indexPath.row % [_itemPerPage intValue] == 0)
 	{
-		title = [NSString stringWithFormat:@"%@ ",[courseInfo objectForKey:@"theme"]];
-		content = [NSString stringWithFormat:@"%@",[courseInfo objectForKey:@"target"]];
-	}
-	if ([_category isEqualToString:@"SolutionInfo"] || [_category isEqualToString:@"ViewInfo"]){
-		title = [NSString stringWithFormat:@"%@ ",[courseInfo objectForKey:@"title"]];
-		content = [NSString stringWithFormat:@"%@",[courseInfo objectForKey:@"content"]];
-	}
-	if ([_category isEqualToString:@"NewsInfo"] || [_category isEqualToString:@"AcInfo"])
-	{
-		title = [NSString stringWithFormat:@"%@ ",[courseInfo objectForKey:@"title"]];
-		content = [NSString stringWithFormat:@"%@",[courseInfo objectForKey:@"intro"]];
-	}
-	
-	
-    if (indexPath.section == 0 && indexPath.row % 5 == 0)
-	{
+		_infoArr = [self loadDataAtPage:indexPath.row/[_itemPerPage intValue] + 1];
 		PiTopCell *cell = (PiTopCell *)[tableView dequeueReusableCellWithIdentifier:topCellIdentifier];
-        
+		
+		NSDictionary *infoInfo = [_infoArr objectAtIndex:0];
 		if (cell == nil)
 		{
 			cell = [[PiTopCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:topCellIdentifier];
 		}
-		cell.cellImage.image = [UIImage imageNamed:@"ted.jpg"];
+		cell.cellImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://121.199.60.94/%@",[infoInfo objectForKey: @"img_url"]]]]];
 		cell.titleLabel.textColor = [UIColor whiteColor];
-		cell.titleLabel.text = title;
+		cell.titleLabel.text = [infoInfo objectForKey:@"title"];
 		cell.titleLabel.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.7];
 		cell.companyLabel.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.7];
-		//cell.titleLabel.font = [UIFont fontNamesForFamilyName:@"Helvetica"];
 		cell.companyLabel.textColor = [UIColor whiteColor];
-		cell.companyLabel.text = @"主办机构";
+        cell.companyLabel.text = [infoInfo objectForKey:@"agency_name"];
+        if([_category isEqualToString:@"ViewInfo"] || [_category isEqualToString:@"SolutionInfo"])
+        {
+            NSString *author = [NSString stringWithFormat:@"%@",[infoInfo objectForKey:@"teach_id"]];
+            cell.companyLabel.text = [NSString stringWithFormat:@"%@  %@",cell.companyLabel.text,author];
+        }
+		
 		return cell;
 	}
 	else if (indexPath.section == 0)
@@ -154,21 +151,44 @@ int cellNum = 5;
 		{
 			cell = [[PiNormalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:normalCellIdentifier];
 		}
-		[self.tableView setRowHeight:100];
-		cell.cellImage.image = [UIImage imageNamed:@"ted.jpg"];
-        cell.titleLabel.text = title;
-        cell.companyLabel.text = [NSString stringWithFormat:@"%@",[courseInfo objectForKey:@"agency_id"]];
-        cell.contentLabel.text = content;
+#warning TBD
+		NSDictionary *infoInfo = [_infoArr objectAtIndex: indexPath.row % [_infoArr count]];
+		cell.cellImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://121.199.60.94/%@",[infoInfo objectForKey: @"img_url"]]]]];
+        cell.titleLabel.text = [infoInfo objectForKey:@"title"];
+        cell.contentLabel.text = [infoInfo objectForKey:@"intro"];
 		cell.contentLabel.numberOfLines = 3;
+		cell.companyLabel.text = [infoInfo objectForKey:@"agency_name"];
+        if([_category isEqualToString:@"ViewInfo"] || [_category isEqualToString:@"SolutionInfo"])
+        {
+            NSString *author = [NSString stringWithFormat:@"%@",[infoInfo objectForKey:@"teach_id"]];
+            cell.companyLabel.text = [NSString stringWithFormat:@"%@  %@",cell.companyLabel.text,author];
+            cell.companyLabel.adjustsFontSizeToFitWidth = YES;
+        }
+        if([_category isEqualToString:@"NewsInfo"])
+        {
+            NSString *time = [NSString stringWithFormat:@"%@",[infoInfo objectForKey:@"time"]];
+            //time = [time substringWithRange:NSMakeRange(0, 10)];
+            cell.companyLabel.text = [NSString stringWithFormat:@"%@  %@",cell.companyLabel.text,time];
+            cell.companyLabel.adjustsFontSizeToFitWidth = YES;
+        }
+		if(indexPath.row  == 1)
+			cell.backgroundColor = [UIColor whiteColor];
+        
+        if(indexPath.row % 2 != 0)
+            cell.backgroundColor = aRGB(239, 239, 239, 1);
+        else
+            cell.backgroundColor = [UIColor whiteColor];
+            
 		return cell;
 	}
 	else
 	{
-		PiNormalCell *cell = (PiNormalCell *)[tableView dequeueReusableCellWithIdentifier:normalCellIdentifier];
-		if (cell == nil)
+		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LoadMoreCell"];
+		if(cell == nil)
 		{
-			cell = [[PiNormalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:normalCellIdentifier];
+			cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:loadMoreCell];
 		}
+		
         cell.textLabel.text = @"load more";
 		return cell;
 	}
@@ -178,25 +198,56 @@ int cellNum = 5;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	if (indexPath.section == 0)
-		return indexPath.row % 5 == 0 ? 210 : 100;
+	if (indexPath.section == 0 )
+		return indexPath.row % [_itemPerPage intValue] == 0 ? 210 : 100;
 	else
-		return 100;
+		return 44;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	if (indexPath.section == 1)
-	{
-		cellNum += 5;
-		[tableView reloadData];
-	}
-	else
-	{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 	PiInfomationDetailViewController *detailview = [[PiInfomationDetailViewController alloc]initWithNibName:@"PiInfomationDetailViewController" bundle:nil];
 	[self.navigationController pushViewController:detailview animated:YES];
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	if (indexPath.row + 1 == infoCellNum && [_infoArr count] == [_itemPerPage intValue])
+	{
+		_infoArr = [self loadDataAtPage: infoCellNum/[_itemPerPage intValue] + 1];
+		if (_infoArr != nil)
+		{
+			infoCellNum += [_infoArr count];
+			[tableView reloadData];
+		}
+		_infoArr = [self loadDataAtPage: infoCellNum/[_itemPerPage intValue]];
 	}
 }
+
+#pragma menu
+- (IBAction)showMenu:(UIBarButtonItem *)sender
+{
+	NSArray *menuItems =
+    @[
+      
+      [KxMenuItem menuItem:@"学位项目" image:nil target:nil action:NULL],
+      [KxMenuItem menuItem:@"非学位项目" image:nil target:nil action:NULL],
+      [KxMenuItem menuItem:@"战略管理" image:nil target:nil action:NULL],
+      [KxMenuItem menuItem:@"市场营销" image:nil target:nil action:NULL],
+      [KxMenuItem menuItem:@"财务与资本运营" image:nil target:nil action:NULL],
+      [KxMenuItem menuItem:@"组织与人力资源" image:nil target:nil action:NULL],
+	  [KxMenuItem menuItem:@"领导力" image:nil target:nil action:NULL],
+	  [KxMenuItem menuItem:@"运营与供应链" image:nil target:nil action:NULL],
+	  [KxMenuItem menuItem:@"其他" image:nil target:nil action:NULL],
+	  [KxMenuItem menuItem:@"返回" image:nil target:self action:@selector(didClickBackButton)],
+      ];
+    
+    [KxMenu showMenuInView:self.view fromRect:CGRectMake(272, iPhone5?524:524-88, 44, 44)
+				 menuItems:menuItems];
+}
+
+
+
 
 @end

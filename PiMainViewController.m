@@ -9,8 +9,11 @@
 #import "PiMainViewController.h"
 #import "PiInfomationViewController.h"
 #import "PiCourseViewController.h"
+#import "PiOpenCourseViewController.h"
+//#import "PiAcinfoViewController.h"
 #import "PiSettingViewController.h"
 #import "PiFeedbackViewController.h"
+#define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
 
 @interface PiMainViewController ()
 
@@ -32,41 +35,42 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 	self.navigationController.navigationBarHidden = YES;
-
 	
 	[self.selectedCourseButton setImageEdgeInsets:UIEdgeInsetsMake(0, 30, 10, 10)];
 	[self.selectedCourseButton setImage:[UIImage imageNamed:@"SelectedCourse"] forState:UIControlStateNormal];
 	[self.selectedCourseButton setTitleEdgeInsets:UIEdgeInsetsMake(60, -15, 5, 5)];
 	[self.selectedCourseButton setTitle:@"精选课程" forState:UIControlStateNormal];
+	self.selectedCourseButton.titleLabel.textAlignment = NSTextAlignmentCenter;
 	
-	[self.solutionButton setImageEdgeInsets:UIEdgeInsetsMake(0, 30, 10, 10)];
+	[self.solutionButton setImageEdgeInsets:UIEdgeInsetsMake(0, 20, 10, 10)];
 	[self.solutionButton setImage:[UIImage imageNamed:@"Solution"] forState:UIControlStateNormal];
-	[self.solutionButton setTitleEdgeInsets:UIEdgeInsetsMake(60, -15, 5, 5)];
+	[self.solutionButton setTitleEdgeInsets:UIEdgeInsetsMake(60, -50, 5, 5)];
 	[self.solutionButton setTitle:@"解决方案" forState:UIControlStateNormal];
 	
 	[self.perspectiveButton setImageEdgeInsets:UIEdgeInsetsMake(0, 30, 10, 10)];
 	[self.perspectiveButton setImage:[UIImage imageNamed:@"Perspective"] forState:UIControlStateNormal];
-	[self.perspectiveButton setTitleEdgeInsets:UIEdgeInsetsMake(60, -15, 5, 5)];
+	[self.perspectiveButton setTitleEdgeInsets:UIEdgeInsetsMake(60, -60, 5, 5)];
 	[self.perspectiveButton setTitle:@"观察与观点" forState:UIControlStateNormal];
+
 	
 	[self.infomationButton setImageEdgeInsets:UIEdgeInsetsMake(0, 30, 10, 10)];
 	[self.infomationButton setImage:[UIImage imageNamed:@"Infomatiom"] forState:UIControlStateNormal];
 	[self.infomationButton setTitleEdgeInsets:UIEdgeInsetsMake(60, -15, 5, 5)];
-	[self.infomationButton setTitle:@"行业资讯" forState:UIControlStateNormal];
+	[self.infomationButton setTitle:@"行业新闻" forState:UIControlStateNormal];
 	
 	[self.seniorCourseButton setImageEdgeInsets:UIEdgeInsetsMake(-15, 30, 10, 10)];
 	[self.seniorCourseButton setImage:[UIImage imageNamed:@"SeniorCourse"] forState:UIControlStateNormal];
-	[self.seniorCourseButton setTitleEdgeInsets:UIEdgeInsetsMake(60, -15, 5, 15)];
+	[self.seniorCourseButton setTitleEdgeInsets:UIEdgeInsetsMake(45, -15, 5, 15)];
 	[self.seniorCourseButton setTitle:@"高层管理课程" forState:UIControlStateNormal];
-	self.seniorCourseButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+	self.seniorCourseButton.titleLabel.numberOfLines = 2;
 	self.seniorCourseButton.titleLabel.textAlignment = NSTextAlignmentCenter;
-	
+
 	[self.generalCourseButton setImageEdgeInsets:UIEdgeInsetsMake(-15, 30, 10, 10)];
 	[self.generalCourseButton setImage:[UIImage imageNamed:@"GeneralCourse"] forState:UIControlStateNormal];
-	[self.generalCourseButton setTitleEdgeInsets:UIEdgeInsetsMake(60, -25, 5, 5)];
-	[self.generalCourseButton setTitle:@"中基层人员管理课程" forState:UIControlStateNormal];
-	self.generalCourseButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-	self.generalCourseButton.titleLabel.lineBreakMode = NSTextAlignmentCenter;
+	[self.generalCourseButton setTitleEdgeInsets:UIEdgeInsetsMake(45, -40, 5, 5)];
+	[self.generalCourseButton setTitle:@"中基层人员\n管理课程" forState:UIControlStateNormal];
+	self.generalCourseButton.titleLabel.numberOfLines = 3;
+	self.generalCourseButton.titleLabel.textAlignment = NSTextAlignmentCenter;
 	
 	[self.activityButton setImageEdgeInsets:UIEdgeInsetsMake(0, 30, 10, 10)];
 	[self.activityButton setImage:[UIImage imageNamed:@"Activity"] forState:UIControlStateNormal];
@@ -79,6 +83,7 @@
 	[self.openCourseButton setTitle:@"公开课程" forState:UIControlStateNormal];
 }
 
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -87,73 +92,74 @@
 
 - (IBAction)selectedCourseClicked:(id)sender
 {
-	PiInfomationViewController *infoView = [[PiInfomationViewController alloc] initWithNibName:@"PiInfomationViewController" bundle:nil];
-	self.navigationController.navigationBarHidden = NO;
-	infoView.navigationItem.title = @"精选课程";
-    infoView.category = @"SelectedCourse";
-	[self.navigationController pushViewController:infoView animated:YES];
+	PiCourseViewController *courseView = [[PiCourseViewController alloc] initWithNibName:@"PiCourseViewController" bundle:nil];
+    courseView.category = @"SelectedCourse";
+	courseView.courseName = @"精选课程";
+	courseView.itemPerPage = @"5";
+	[self.navigationController pushViewController:courseView animated:YES];
 }
 
 - (IBAction)solutionClicked:(id)sender
 {
 	PiInfomationViewController *infoView = [[PiInfomationViewController alloc] initWithNibName:@"PiInfomationViewController" bundle:nil];
-	self.navigationController.navigationBarHidden = NO;
-	infoView.navigationItem.title = @"解决方案";
     infoView.category = @"SolutionInfo";
+	infoView.infoName = @"解决方案";
+	infoView.itemPerPage = @"3";
 	[self.navigationController pushViewController:infoView animated:YES];
 }
 
 - (IBAction)perspectiveClicked:(id)sender
 {
 	PiInfomationViewController *infoView = [[PiInfomationViewController alloc] initWithNibName:@"PiInfomationViewController" bundle:nil];
-	self.navigationController.navigationBarHidden = NO;
-	infoView.navigationItem.title = @"观察与观点";
 	infoView.category = @"ViewInfo";
+	infoView.infoName = @"视野观察";
+	infoView.itemPerPage = @"4";
 	[self.navigationController pushViewController:infoView animated:YES];
 }
 
 - (IBAction)infoClicked:(id)sender
 {
 	PiInfomationViewController *infoView = [[PiInfomationViewController alloc] initWithNibName:@"PiInfomationViewController" bundle:nil];
-	self.navigationController.navigationBarHidden = NO;
-	infoView.navigationItem.title = @"行业资讯";
 	infoView.category = @"NewsInfo";
+	infoView.infoName = @"行业新闻";
+	infoView.itemPerPage = @"4";
 	[self.navigationController pushViewController:infoView animated:YES];
 }
 
 - (IBAction)seniorCourseClicked:(id)sender
 {
-	PiCourseViewController *courseView = [[PiCourseViewController alloc] initWithNibName:@"PiCourseViewController" bundle:nil];
-	self.navigationController.navigationBarHidden = NO;
-	courseView.navigationItem.title = @"高层管理课程";
-    courseView.category = @"HighCourse";
-	[self.navigationController pushViewController:courseView animated:YES];
+	PiCourseViewController *highCourseView = [[PiCourseViewController alloc] initWithNibName:@"PiCourseViewController" bundle:nil];
+    highCourseView.category = @"HighCourse";
+	highCourseView.courseName = @"高层管理课程";
+	highCourseView.itemPerPage = @"5";
+	[self.navigationController pushViewController:highCourseView animated:YES];
 }
 
 - (IBAction)generalCourseClicked:(id)sender
 {
 	PiCourseViewController *courseView = [[PiCourseViewController alloc] initWithNibName:@"PiCourseViewController" bundle:nil];
-	self.navigationController.navigationBarHidden = NO;
-	courseView.navigationItem.title = @"中基层人员管理课程";
     courseView.category = @"MidCourse";
+	courseView.courseName = @"中基层人员管理课程";
+	courseView.itemPerPage = @"5";
 	[self.navigationController pushViewController:courseView animated:YES];
 }
 
 - (IBAction)activityClicked:(id)sender
 {
-	PiInfomationViewController *infoView = [[PiInfomationViewController alloc] initWithNibName:@"PiInfomationViewController" bundle:nil];
-	self.navigationController.navigationBarHidden = NO;
-	infoView.navigationItem.title = @"行业活动";
-	infoView.category = @"AcInfo";
-	[self.navigationController pushViewController:infoView animated:YES];
+	PiOpenCourseViewController *courseView = [[PiOpenCourseViewController alloc] initWithNibName:@"PiOpenCourseViewController" bundle:nil];
+    //PiAcinfoViewController *acInfoView = [[PiAcinfoViewController alloc]initWithNibName:@"PiAcinfoViewController" bundle:nil];
+	courseView.category = @"AcInfo";
+	courseView.courseName = @"行业活动";
+	courseView.itemPerPage = @"5";
+	[self.navigationController pushViewController:courseView animated:YES];
 }
 
 - (IBAction)openCourseClicked:(id)sender
 {
-	PiCourseViewController *courseView = [[PiCourseViewController alloc] initWithNibName:@"PiCourseViewController" bundle:nil];
-	self.navigationController.navigationBarHidden = NO;
-	courseView.navigationItem.title = @"公开课程";
+	PiOpenCourseViewController *courseView = [[PiOpenCourseViewController alloc] initWithNibName:@"PiOpenCourseViewController" bundle:nil];
     courseView.category = @"OpenCourse";
+	courseView.courseName = @"公开课程";
+	courseView.itemPerPage = @"5";
 	[self.navigationController pushViewController:courseView animated:YES];
 }
 
@@ -163,27 +169,4 @@
 	[alert show];
 }
 
-- (IBAction)settingClicked:(id)sender
-{
-	PiSettingViewController *settingView = [[PiSettingViewController alloc] initWithNibName:@"PiSettingViewController" bundle:nil];
-	self.navigationController.navigationBarHidden = NO;
-	settingView.navigationItem.title = @"设置";
-	[self.navigationController pushViewController:settingView animated:YES];
-}
-
-- (IBAction)favouriteClicked:(id)sender
-{
-	PiInfomationViewController *infoView = [[PiInfomationViewController alloc] initWithNibName:@"PiInfomationViewController" bundle:nil];
-	self.navigationController.navigationBarHidden = NO;
-	infoView.navigationItem.title = @"收藏";
-	[self.navigationController pushViewController:infoView animated:YES];
-}
-
-- (IBAction)feedbackClicked:(id)sender
-{
-	PiFeedbackViewController *feedbackview = [[PiFeedbackViewController alloc] initWithNibName:@"PiFeedbackViewController" bundle:nil];
-	self.navigationController.navigationBarHidden = NO;
-	feedbackview.navigationItem.title = @"反馈";
-	[self.navigationController pushViewController:feedbackview animated:YES];
-}
 @end
