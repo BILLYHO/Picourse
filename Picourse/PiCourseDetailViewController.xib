@@ -6,7 +6,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PiCourseDetailViewController">
             <connections>
-                <outlet property="detailWebView" destination="uBa-sH-s5c" id="sNF-KG-f8s"/>
+                <outlet property="courseDetailWebView" destination="uBa-sH-s5c" id="oIK-td-RpX"/>
+                <outlet property="favouriteButton" destination="LgB-eL-l79" id="5aP-eP-YHh"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -15,13 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="课程类详细页面" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lRn-So-1qV">
-                    <rect key="frame" x="101" y="273" width="119" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hB4-To-ySQ">
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hB4-To-ySQ">
                     <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <items>
@@ -31,18 +26,29 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="B5f-MA-cK7"/>
-                        <barButtonItem image="Favourite.png" width="64" id="LgB-eL-l79"/>
+                        <barButtonItem image="Favourite.png" width="64" id="LgB-eL-l79">
+                            <connections>
+                                <action selector="didClickedFavouriteButton:" destination="-1" id="Lza-32-679"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="izm-0w-xwJ"/>
                         <barButtonItem image="Share.png" width="40" id="Cmw-Mh-WC7"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="mX3-Gv-5TX"/>
+                        <barButtonItem systemItem="action" id="pBj-fA-Ii9"/>
                     </items>
                 </toolbar>
-                <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uBa-sH-s5c">
-                    <rect key="frame" x="0.0" y="0.0" width="325" height="524"/>
+                <webView contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uBa-sH-s5c">
+                    <rect key="frame" x="0.0" y="20" width="325" height="504"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 </webView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="uBa-sH-s5c" firstAttribute="top" secondItem="1" secondAttribute="top" constant="20" id="LdU-PZ-Wx7"/>
+                <constraint firstItem="hB4-To-ySQ" firstAttribute="top" secondItem="uBa-sH-s5c" secondAttribute="bottom" id="acC-iz-hYF"/>
+                <constraint firstAttribute="bottom" secondItem="hB4-To-ySQ" secondAttribute="bottom" id="qaQ-At-6bi"/>
+            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>

@@ -27,6 +27,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+	[_infoDetailWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://121.199.60.94/web/detailPage/info.html?info=AcInfo&id=1"]]];
 }
 
 - (void)didReceiveMemoryWarning

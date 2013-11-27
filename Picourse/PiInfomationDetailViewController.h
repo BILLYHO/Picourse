@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface PiInfomationDetailViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UIWebView *infoDetailWebview;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *favouriteButton;
 
 @end
