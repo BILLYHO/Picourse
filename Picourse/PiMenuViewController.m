@@ -10,7 +10,7 @@
 #import "UIViewController+REFrostedViewController.h"
 #import "PiSettingViewController.h"
 #import "PiFeedbackViewController.h"
-#import "PiInfomationViewController.h"
+#import "PiFavouriteViewController.h"
 
 
 @interface PiMenuViewController ()
@@ -89,7 +89,7 @@
     }
 	else if (indexPath.row == 1)
 	{
-		PiInfomationViewController *infoView = [[PiInfomationViewController alloc] initWithNibName:@"PiInfomationViewController" bundle:nil];
+		PiFavouriteViewController *infoView = [[PiFavouriteViewController alloc] initWithNibName:@"PiFavouriteViewController" bundle:nil];
 		self.navigationController.navigationBarHidden = NO;
 		infoView.navigationItem.title = @"收藏";
 		[navigationController pushViewController:infoView animated:YES];

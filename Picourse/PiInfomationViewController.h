@@ -12,7 +12,6 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UILabel *categoryLabel;
 @property (strong, nonatomic) IBOutlet UIToolbar *infoToolBar;
-//@property (strong, nonatomic) IBOutlet UIBarButtonItem *menuButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *backButton;
 
 @property (strong, nonatomic) NSString *category;
