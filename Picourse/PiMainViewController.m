@@ -33,7 +33,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-	self.navigationController.navigationBarHidden = YES;
+	//self.navigationController.navigationBarHidden = YES;
 	
 	[self.selectedCourseButton setImageEdgeInsets:UIEdgeInsetsMake(0, 30, 10, 10)];
 	[self.selectedCourseButton setImage:[UIImage imageNamed:@"SelectedCourse"] forState:UIControlStateNormal];

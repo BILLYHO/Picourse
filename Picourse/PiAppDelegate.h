@@ -17,6 +17,8 @@
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
--(NSArray*)getAllFavourite;
-
+-(NSArray*)getAllInfo;
+-(NSArray*)getAllCourse;
+- (void) saveData;
+- (void) deleteItem : (NSManagedObject *) item;
 @end

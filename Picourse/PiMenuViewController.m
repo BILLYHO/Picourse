@@ -72,7 +72,6 @@
 {
     if (sectionIndex == 0)
         return 0;
-    
     return 34;
 }
 
@@ -91,7 +90,8 @@
 	{
 		PiFavouriteViewController *infoView = [[PiFavouriteViewController alloc] initWithNibName:@"PiFavouriteViewController" bundle:nil];
 		self.navigationController.navigationBarHidden = NO;
-		infoView.navigationItem.title = @"收藏";
+		infoView.navigationItem.title = @"收藏列表";
+		infoView.navigationController.navigationBarHidden = NO;
 		[navigationController pushViewController:infoView animated:YES];
 	}
 	else if (indexPath.row == 2)

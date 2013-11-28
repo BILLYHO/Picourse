@@ -8,8 +8,10 @@
 
 #import "PiFavouriteViewController.h"
 #import "PiNormalCell.h"
-#import "Favourite.h"
+
 #import "PiAppDelegate.h"
+#import "Info.h"
+#import "Course.h"
 
 #define aRGB(r,g,b,a) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a/1.0f]
 
@@ -25,8 +27,11 @@ static NSString *normalCellIdentifier = @"NormalCell";
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+		self.navigationController.navigationBarHidden = NO;
 		PiAppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
-		_fetchedRecordsArray = [appDelegate getAllFavourite];
+		_infoArray = [appDelegate getAllInfo];
+		_courseArray = [appDelegate getAllCourse];
+		_record = [NSMutableArray arrayWithArray:_infoArray];
     }
     return self;
 }
@@ -41,9 +46,6 @@ static NSString *normalCellIdentifier = @"NormalCell";
 	UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didClickBackButton)];
 	[recognizer setDirection:UISwipeGestureRecognizerDirectionRight];
 	[self.favouriteTableView addGestureRecognizer:recognizer];
-		
-
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,12 +57,29 @@ static NSString *normalCellIdentifier = @"NormalCell";
 #pragma mark - Back Button
 - (void)didClickBackButton
 {
+	self.navigationController.navigationBarHidden = YES;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)back:(id)sender
 {
 	[self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma Segment stuff
+- (IBAction)changeSegment:(UISegmentedControl *)sender
+{
+	
+    if ([sender selectedSegmentIndex] == 0)
+	{
+        _record = [NSMutableArray arrayWithArray:_infoArray];
+		[_favouriteTableView reloadData];
+    }
+	else
+	{
+		_record = [NSMutableArray arrayWithArray:_courseArray];
+		[_favouriteTableView reloadData];
+	}
 }
 
 #pragma mark - Table view data source
@@ -72,54 +91,46 @@ static NSString *normalCellIdentifier = @"NormalCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_fetchedRecordsArray count];
+    return [_record count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	Favourite *info = [_fetchedRecordsArray objectAtIndex:indexPath.row];
-	
 	PiNormalCell *cell = (PiNormalCell *)[tableView dequeueReusableCellWithIdentifier:normalCellIdentifier];
 	if (cell == nil)
 	{
 		cell = [[PiNormalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:normalCellIdentifier];
 	}
-	cell.cellImage.image = [UIImage imageNamed:@"avatar"];
-	cell.titleLabel.text = info.category;
-	cell.contentLabel.text = [NSString stringWithFormat:@"row %@",info.identifier];
-	cell.companyLabel.text = [NSString stringWithFormat:@"%@    %@", info.company, info.auther];
-//		cell.cellImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://121.199.60.94/%@",[infoInfo objectForKey: @"img_url"]]]]];
-//        cell.titleLabel.text = [infoInfo objectForKey:@"title"];
-//        cell.contentLabel.text = [infoInfo objectForKey:@"intro"];
-//		cell.contentLabel.numberOfLines = 3;
-//		cell.companyLabel.text = [infoInfo objectForKey:@"agency_name"];
-//        if([_category isEqualToString:@"ViewInfo"] || [_category isEqualToString:@"SolutionInfo"])
-//        {
-//            NSString *author = [NSString stringWithFormat:@"%@",[infoInfo objectForKey:@"teach_id"]];
-//            cell.companyLabel.text = [NSString stringWithFormat:@"%@  %@",cell.companyLabel.text,author];
-//            cell.companyLabel.adjustsFontSizeToFitWidth = YES;
-//        }
-//        if([_category isEqualToString:@"NewsInfo"])
-//        {
-//            NSString *time = [NSString stringWithFormat:@"%@",[infoInfo objectForKey:@"time"]];
-//            //time = [time substringWithRange:NSMakeRange(0, 10)];
-//            cell.companyLabel.text = [NSString stringWithFormat:@"%@  %@",cell.companyLabel.text,time];
-//            cell.companyLabel.adjustsFontSizeToFitWidth = YES;
-//        }
-		
-        
-        if(indexPath.row % 2 != 0)
-            cell.backgroundColor = aRGB(239, 239, 239, 1);
-        else
-            cell.backgroundColor = [UIColor whiteColor];
-		
-		return cell;
+	if([_segementBar selectedSegmentIndex] == 0)
+	{
+		Info *cellInfo = [_record objectAtIndex:indexPath.row];
+		cell.cellImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://121.199.60.94/%@",cellInfo.imageUrl]]]];
+		cell.titleLabel.text = cellInfo.category;
+		cell.contentLabel.text = [NSString stringWithFormat:@"row %@",cellInfo.identifier];
+		cell.companyLabel.text = [NSString stringWithFormat:@"%@    %@", cellInfo.company, cellInfo.auther];
+	}
+	else
+	{
+		Course *cellInfo = [_record objectAtIndex:indexPath.row];
+		cell.titleLabel.text = cellInfo.category;
+		cell.companyLabel.text = cellInfo.company;
+	}
 	
+		
+	if(indexPath.row % 2 != 0)
+		cell.backgroundColor = aRGB(239, 239, 239, 1);
+	else
+		cell.backgroundColor = [UIColor whiteColor];
+		
+	return cell;
 }
 
 - (void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	PiAppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
+	[appDelegate deleteItem:(NSManagedObject *)[_record objectAtIndex:indexPath.row]];
 	
+	[_record removeObjectAtIndex:indexPath.row];
 	[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 

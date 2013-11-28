@@ -11,7 +11,8 @@
 #import "PiNavigationController.h"
 #import "PiMenuViewController.h"
 
-#import "Favourite.h"
+#import "Info.h"
+#import "Course.h"
 
 #define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
 
@@ -40,31 +41,20 @@
 
 - (void) addToDB
 {
-	NSLog(@"testing");
+	Info *entry = (Info *)[NSEntityDescription insertNewObjectForEntityForName:@"Info" inManagedObjectContext:self.managedObjectContext];
+	[entry setCategory:@"AcInfo"];
+	[entry setIdentifier:@"1"];
+	[entry setImageUrl:@"\/picourse\/Public\/pic\/default.png"];
+	[entry setTitle:@"大笨象会跳舞"];
+	[entry setContent:@"内容内容"];
+	[entry setCompany:@"公司名称"];
+	[entry setAuther:@"作者"];
 	
-	Favourite *entry = (Favourite *)[NSEntityDescription insertNewObjectForEntityForName:@"Favourite" inManagedObjectContext:self.managedObjectContext];
-	[entry setCategory:@"123"];
-	[entry setCategoryNum:@"1"];
-	[entry setIdentifier:@"lalala1"];
-	[entry setImageUrl:@"default.png"];
-	[entry setCompany:@"kkkk"];
-	[entry setAuther:@"me"];
-	
-	Favourite *entry2 = (Favourite *)[NSEntityDescription insertNewObjectForEntityForName:@"Favourite" inManagedObjectContext:self.managedObjectContext];
-	[entry2 setCategory:@"123"];
-	[entry2 setCategoryNum:@"1"];
-	[entry2 setIdentifier:@"lalala2"];
-	[entry2 setImageUrl:@"\/picourse\/Public\/pic\/default.png"];
-	[entry2 setCompany:@"kkkk"];
-	[entry2 setAuther:@"me"];
-	
-	Favourite *entry3 = (Favourite *)[NSEntityDescription insertNewObjectForEntityForName:@"Favourite" inManagedObjectContext:self.managedObjectContext];
-	[entry3 setCategory:@"123"];
-	[entry3 setCategoryNum:@"1"];
-	[entry3 setIdentifier:@"lalala3"];
-	[entry3 setImageUrl:@"\/picourse\/Public\/pic\/default.png"];
-	[entry3 setCompany:@"kkkk"];
-	[entry3 setAuther:@"me"];
+	Course *entry2 = (Course *)[NSEntityDescription insertNewObjectForEntityForName:@"Course" inManagedObjectContext:self.managedObjectContext];
+	[entry2 setCategory:@"OpenCourse"];
+	[entry2 setIdentifier:@"10"];
+	[entry2 setTitle:@"服装行业专场沙龙"];
+	[entry2 setCompany:@"华南理工大学管理学院"];
 	
 	NSError *error;
 	if(![self.managedObjectContext save:&error])
@@ -73,21 +63,43 @@
 		NSLog(@"ok!");
 }
 
-- (NSArray *)getAllFavourite
+- (NSArray *)getAllInfo
 {
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-	
-	//Setting Entity to be Queried
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Favourite"
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Info"
 								inManagedObjectContext:self.managedObjectContext];
 	[fetchRequest setEntity:entity];
 	NSError* error;
-	
-	// Query on managedObjectContext With Generated fetchRequest
+	NSArray *fetchedRecords = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+
+	return fetchedRecords;
+}
+
+- (NSArray *)getAllCourse
+{
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Course"
+								inManagedObjectContext:self.managedObjectContext];
+	[fetchRequest setEntity:entity];
+	NSError* error;
 	NSArray *fetchedRecords = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
 	
-	// Returning Fetched Records
 	return fetchedRecords;
+}
+
+- (void) saveData
+{
+	NSError *error;
+	if(![self.managedObjectContext save:&error])
+		NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+	else
+		NSLog(@"Data saved!");
+}
+
+- (void) deleteItem : (NSManagedObject *) item
+{
+	[self.managedObjectContext deleteObject:item];
+	[self saveData];
 }
 
 - (NSManagedObjectContext *) managedObjectContext
