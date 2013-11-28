@@ -7,6 +7,7 @@
 //
 
 #import "PiFavouriteViewController.h"
+#import "UIBarButtonItem+ProjectButton.h"
 #import "PiNormalCell.h"
 
 #import "PiAppDelegate.h"
@@ -27,6 +28,8 @@ static NSString *normalCellIdentifier = @"NormalCell";
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+		[self customizeNavigationBar];
+		
 		self.navigationController.navigationBarHidden = NO;
 		PiAppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
 		_infoArray = [appDelegate getAllInfo];
@@ -54,6 +57,11 @@ static NSString *normalCellIdentifier = @"NormalCell";
     // Dispose of any resources that can be recreated.
 }
 
+- (void)customizeNavigationBar
+{
+    self.navigationItem.leftBarButtonItems = [UIBarButtonItem createEdgeButtonWithImage:[UIImage imageNamed:@"Back"] WithTarget:self action:@selector(didClickBackButton)];
+}
+
 #pragma mark - Back Button
 - (void)didClickBackButton
 {
@@ -63,6 +71,7 @@ static NSString *normalCellIdentifier = @"NormalCell";
 
 - (IBAction)back:(id)sender
 {
+	self.navigationController.navigationBarHidden = YES;
 	[self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -105,8 +114,8 @@ static NSString *normalCellIdentifier = @"NormalCell";
 	{
 		Info *cellInfo = [_record objectAtIndex:indexPath.row];
 		cell.cellImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://121.199.60.94/%@",cellInfo.imageUrl]]]];
-		cell.titleLabel.text = cellInfo.category;
-		cell.contentLabel.text = [NSString stringWithFormat:@"row %@",cellInfo.identifier];
+		cell.titleLabel.text = cellInfo.title;
+		cell.contentLabel.text = [NSString stringWithFormat:@"%@",cellInfo.content];
 		cell.companyLabel.text = [NSString stringWithFormat:@"%@    %@", cellInfo.company, cellInfo.auther];
 	}
 	else
@@ -114,6 +123,8 @@ static NSString *normalCellIdentifier = @"NormalCell";
 		Course *cellInfo = [_record objectAtIndex:indexPath.row];
 		cell.titleLabel.text = cellInfo.category;
 		cell.companyLabel.text = cellInfo.company;
+		cell.cellImage.image = Nil;
+		cell.contentLabel.text = @"";
 	}
 	
 		

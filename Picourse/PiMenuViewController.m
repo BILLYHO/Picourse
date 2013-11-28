@@ -79,7 +79,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     UINavigationController *navigationController = (UINavigationController *)self.frostedViewController.contentViewController;
-    
+	
     if (indexPath.row == 0)
 	{
         PiSettingViewController *settingView = [[PiSettingViewController alloc] initWithNibName:@"PiSettingViewController" bundle:nil];
@@ -89,7 +89,7 @@
 	else if (indexPath.row == 1)
 	{
 		PiFavouriteViewController *infoView = [[PiFavouriteViewController alloc] initWithNibName:@"PiFavouriteViewController" bundle:nil];
-		self.navigationController.navigationBarHidden = NO;
+		navigationController.navigationBarHidden = NO;
 		infoView.navigationItem.title = @"收藏列表";
 		infoView.navigationController.navigationBarHidden = NO;
 		[navigationController pushViewController:infoView animated:YES];

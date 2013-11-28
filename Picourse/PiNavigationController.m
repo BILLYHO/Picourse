@@ -20,9 +20,13 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-	UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(rightSwipe)];
-	[recognizer setDirection:UISwipeGestureRecognizerDirectionRight];
-	[self.view addGestureRecognizer:recognizer];
+	UISwipeGestureRecognizer *rightRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(rightSwipe)];
+	[rightRecognizer setDirection:UISwipeGestureRecognizerDirectionRight];
+	[self.view addGestureRecognizer:rightRecognizer];
+	
+	UISwipeGestureRecognizer *leftRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(leftSwipe)];
+	[leftRecognizer setDirection:UISwipeGestureRecognizerDirectionLeft];
+	[self.view addGestureRecognizer:leftRecognizer];
 }
 
 - (void)didReceiveMemoryWarning
@@ -33,10 +37,13 @@
 
 - (void)rightSwipe
 {
+	[self popViewControllerAnimated:YES];
+}
+
+- (void)leftSwipe
+{
 	if(self.viewControllers.count <= 1)
 		[self.frostedViewController presentMenuViewController];
-	else
-		[self popViewControllerAnimated:YES];
 }
 
 @end

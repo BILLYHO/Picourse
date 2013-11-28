@@ -29,7 +29,7 @@
     PiMenuViewController *menuController = [[PiMenuViewController alloc] initWithStyle:UITableViewStylePlain];
     
     REFrostedViewController *frostedViewController = [[REFrostedViewController alloc] initWithContentViewController:navigationView menuViewController:menuController];
-    frostedViewController.direction = REFrostedViewControllerDirectionLeft;
+    frostedViewController.direction = REFrostedViewControllerDirectionRight;
     frostedViewController.liveBlurBackgroundStyle = REFrostedViewControllerLiveBackgroundStyleLight;
     frostedViewController.delegate = self;
 	[self.window setRootViewController:frostedViewController];
