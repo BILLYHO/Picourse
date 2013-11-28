@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 
 @interface PiFavouriteViewController : UIViewController <UITableViewDataSource, UITableViewDelegate >
 @property (strong, nonatomic) IBOutlet UITableView *favouriteTableView;
 
-@property (strong, nonatomic) NSMutableArray *fav;
+@property (nonatomic,strong) NSArray *fetchedRecordsArray;
+
 @end

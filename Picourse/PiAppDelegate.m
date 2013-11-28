@@ -11,6 +11,8 @@
 #import "PiNavigationController.h"
 #import "PiMenuViewController.h"
 
+#import "Favourite.h"
+
 #define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
 
 @implementation PiAppDelegate
@@ -30,7 +32,111 @@
     frostedViewController.liveBlurBackgroundStyle = REFrostedViewControllerLiveBackgroundStyleLight;
     frostedViewController.delegate = self;
 	[self.window setRootViewController:frostedViewController];
+	
+	//[self addToDB];
+	
     return YES;
+}
+
+- (void) addToDB
+{
+	NSLog(@"testing");
+	
+	Favourite *entry = (Favourite *)[NSEntityDescription insertNewObjectForEntityForName:@"Favourite" inManagedObjectContext:self.managedObjectContext];
+	[entry setCategory:@"123"];
+	[entry setCategoryNum:@"1"];
+	[entry setIdentifier:@"lalala1"];
+	[entry setImageUrl:@"default.png"];
+	[entry setCompany:@"kkkk"];
+	[entry setAuther:@"me"];
+	
+	Favourite *entry2 = (Favourite *)[NSEntityDescription insertNewObjectForEntityForName:@"Favourite" inManagedObjectContext:self.managedObjectContext];
+	[entry2 setCategory:@"123"];
+	[entry2 setCategoryNum:@"1"];
+	[entry2 setIdentifier:@"lalala2"];
+	[entry2 setImageUrl:@"\/picourse\/Public\/pic\/default.png"];
+	[entry2 setCompany:@"kkkk"];
+	[entry2 setAuther:@"me"];
+	
+	Favourite *entry3 = (Favourite *)[NSEntityDescription insertNewObjectForEntityForName:@"Favourite" inManagedObjectContext:self.managedObjectContext];
+	[entry3 setCategory:@"123"];
+	[entry3 setCategoryNum:@"1"];
+	[entry3 setIdentifier:@"lalala3"];
+	[entry3 setImageUrl:@"\/picourse\/Public\/pic\/default.png"];
+	[entry3 setCompany:@"kkkk"];
+	[entry3 setAuther:@"me"];
+	
+	NSError *error;
+	if(![self.managedObjectContext save:&error])
+		NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+	else
+		NSLog(@"ok!");
+}
+
+- (NSArray *)getAllFavourite
+{
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+	
+	//Setting Entity to be Queried
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Favourite"
+								inManagedObjectContext:self.managedObjectContext];
+	[fetchRequest setEntity:entity];
+	NSError* error;
+	
+	// Query on managedObjectContext With Generated fetchRequest
+	NSArray *fetchedRecords = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+	
+	// Returning Fetched Records
+	return fetchedRecords;
+}
+
+- (NSManagedObjectContext *) managedObjectContext
+{
+	if (_managedObjectContext != nil)
+		return _managedObjectContext;
+
+	NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+	if (coordinator != nil)
+	{
+		_managedObjectContext = [[NSManagedObjectContext alloc] init];
+		[_managedObjectContext setPersistentStoreCoordinator: coordinator];
+	}
+	return _managedObjectContext;
+}
+
+- (NSManagedObjectModel *)managedObjectModel
+{
+	if (_managedObjectModel != nil)
+		return _managedObjectModel;
+	
+	NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"picourse" withExtension:@"momd"];
+    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+	return _managedObjectModel;
+}
+
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinator
+{
+	if (_persistentStoreCoordinator != nil)
+		return _persistentStoreCoordinator;
+	
+	NSURL *storeUrl = [NSURL fileURLWithPath: [[self applicationDocumentsDirectory]
+											   stringByAppendingPathComponent: @"picourse.sqlite"]];
+	NSError *error = nil;
+	_persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc]
+								   initWithManagedObjectModel:[self managedObjectModel]];
+	if(![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
+												  configuration:nil URL:storeUrl options:nil error:&error]) {
+		/*Error for store creation should be handled in here*/
+		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+	}
+	
+	return _persistentStoreCoordinator;
+}
+
+- (NSString *)applicationDocumentsDirectory
+{
+	return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

@@ -16,5 +16,6 @@
 @property (nonatomic, retain) NSString *identifier;
 @property (nonatomic, retain) NSString *company;
 @property (nonatomic, retain) NSString *auther;
+@property (nonatomic, retain) NSString *imageUrl;
 
 @end

@@ -8,6 +8,8 @@
 
 #import "PiFavouriteViewController.h"
 #import "PiNormalCell.h"
+#import "Favourite.h"
+#import "PiAppDelegate.h"
 
 #define aRGB(r,g,b,a) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a/1.0f]
 
@@ -23,6 +25,8 @@ static NSString *normalCellIdentifier = @"NormalCell";
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+		PiAppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
+		_fetchedRecordsArray = [appDelegate getAllFavourite];
     }
     return self;
 }
@@ -37,8 +41,8 @@ static NSString *normalCellIdentifier = @"NormalCell";
 	UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didClickBackButton)];
 	[recognizer setDirection:UISwipeGestureRecognizerDirectionRight];
 	[self.favouriteTableView addGestureRecognizer:recognizer];
-	
-	_fav = [NSMutableArray arrayWithArray: @[@"1", @"2", @"3",@"4",@"5"]];
+		
+
 
 }
 
@@ -68,22 +72,22 @@ static NSString *normalCellIdentifier = @"NormalCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
-	return [_fav count];
+    return [_fetchedRecordsArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	Favourite *info = [_fetchedRecordsArray objectAtIndex:indexPath.row];
 	
-		PiNormalCell *cell = (PiNormalCell *)[tableView dequeueReusableCellWithIdentifier:normalCellIdentifier];
-		if (cell == nil)
-		{
-			cell = [[PiNormalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:normalCellIdentifier];
-		}
+	PiNormalCell *cell = (PiNormalCell *)[tableView dequeueReusableCellWithIdentifier:normalCellIdentifier];
+	if (cell == nil)
+	{
+		cell = [[PiNormalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:normalCellIdentifier];
+	}
 	cell.cellImage.image = [UIImage imageNamed:@"avatar"];
-	cell.titleLabel.text = @"title";
-	cell.contentLabel.text = [NSString stringWithFormat:@"row %@",[_fav objectAtIndex:indexPath.row]];
-	cell.companyLabel.text = [NSString stringWithFormat:@"%@    %@", @"Company", @"Auther"];
+	cell.titleLabel.text = info.category;
+	cell.contentLabel.text = [NSString stringWithFormat:@"row %@",info.identifier];
+	cell.companyLabel.text = [NSString stringWithFormat:@"%@    %@", info.company, info.auther];
 //		cell.cellImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://121.199.60.94/%@",[infoInfo objectForKey: @"img_url"]]]]];
 //        cell.titleLabel.text = [infoInfo objectForKey:@"title"];
 //        cell.contentLabel.text = [infoInfo objectForKey:@"intro"];
@@ -115,7 +119,7 @@ static NSString *normalCellIdentifier = @"NormalCell";
 
 - (void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	[_fav removeObjectAtIndex:indexPath.row];
+	
 	[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 

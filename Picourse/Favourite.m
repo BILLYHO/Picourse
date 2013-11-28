@@ -15,5 +15,6 @@
 @dynamic identifier;
 @dynamic company;
 @dynamic auther;
+@dynamic imageUrl;
 
 @end

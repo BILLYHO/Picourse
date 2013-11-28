@@ -66,6 +66,7 @@
 		28BFBDB11845E7B30023E6EB /* Favourite.m in Sources */ = {isa = PBXBuildFile; fileRef = 28BFBDB01845E7B30023E6EB /* Favourite.m */; };
 		28BFBDB51845EB450023E6EB /* PiFavouriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28BFBDB31845EB450023E6EB /* PiFavouriteViewController.m */; };
 		28BFBDB71845F6550023E6EB /* PiFavouriteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28BFBDB91845F6550023E6EB /* PiFavouriteViewController.xib */; };
+		28BFBDBB184727560023E6EB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28BFBDBA184727560023E6EB /* CoreData.framework */; };
 		28DDA0EE18042EC300D8A24F /* Activity.png in Resources */ = {isa = PBXBuildFile; fileRef = 28DDA0C618042EC300D8A24F /* Activity.png */; };
 		28DDA0EF18042EC300D8A24F /* Activity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 28DDA0C718042EC300D8A24F /* Activity@2x.png */; };
 		28DDA0F018042EC300D8A24F /* SeniorCourse.png in Resources */ = {isa = PBXBuildFile; fileRef = 28DDA0C818042EC300D8A24F /* SeniorCourse.png */; };
@@ -209,7 +210,8 @@
 		28BFBDB01845E7B30023E6EB /* Favourite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Favourite.m; sourceTree = "<group>"; };
 		28BFBDB21845EB450023E6EB /* PiFavouriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PiFavouriteViewController.h; sourceTree = "<group>"; };
 		28BFBDB31845EB450023E6EB /* PiFavouriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PiFavouriteViewController.m; sourceTree = "<group>"; };
-		28BFBDB81845F6550023E6EB /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/PiFavouriteViewController.xib; sourceTree = "<group>"; };
+		28BFBDB81845F6550023E6EB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PiFavouriteViewController.xib; sourceTree = "<group>"; };
+		28BFBDBA184727560023E6EB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		28DDA0C618042EC300D8A24F /* Activity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Activity.png; sourceTree = "<group>"; };
 		28DDA0C718042EC300D8A24F /* Activity@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Activity@2x.png"; sourceTree = "<group>"; };
 		28DDA0C818042EC300D8A24F /* SeniorCourse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SeniorCourse.png; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28BFBDBB184727560023E6EB /* CoreData.framework in Frameworks */,
 				282640B81803F1900002519E /* CoreGraphics.framework in Frameworks */,
 				282640BA1803F1900002519E /* UIKit.framework in Frameworks */,
 				282640B61803F1900002519E /* Foundation.framework in Frameworks */,
@@ -328,6 +331,7 @@
 		282640B41803F1900002519E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				28BFBDBA184727560023E6EB /* CoreData.framework */,
 				282640B51803F1900002519E /* Foundation.framework */,
 				282640B71803F1900002519E /* CoreGraphics.framework */,
 				282640B91803F1900002519E /* UIKit.framework */,
