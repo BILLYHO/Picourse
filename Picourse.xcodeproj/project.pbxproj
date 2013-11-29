@@ -68,6 +68,9 @@
 		28BFBDBB184727560023E6EB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28BFBDBA184727560023E6EB /* CoreData.framework */; };
 		28BFBDC4184769F00023E6EB /* Info.m in Sources */ = {isa = PBXBuildFile; fileRef = 28BFBDC3184769F00023E6EB /* Info.m */; };
 		28BFBDC7184769FC0023E6EB /* Course.m in Sources */ = {isa = PBXBuildFile; fileRef = 28BFBDC6184769FC0023E6EB /* Course.m */; };
+		28BFBDCA1848A74B0023E6EB /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 28BFBDC91848A74B0023E6EB /* MBProgressHUD.m */; };
+		28BFBDD21848B7760023E6EB /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 28BFBDD01848B7760023E6EB /* 37x-Checkmark.png */; };
+		28BFBDD31848B7760023E6EB /* 37x-Checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 28BFBDD11848B7760023E6EB /* 37x-Checkmark@2x.png */; };
 		28DDA0EE18042EC300D8A24F /* Activity.png in Resources */ = {isa = PBXBuildFile; fileRef = 28DDA0C618042EC300D8A24F /* Activity.png */; };
 		28DDA0EF18042EC300D8A24F /* Activity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 28DDA0C718042EC300D8A24F /* Activity@2x.png */; };
 		28DDA0F018042EC300D8A24F /* SeniorCourse.png in Resources */ = {isa = PBXBuildFile; fileRef = 28DDA0C818042EC300D8A24F /* SeniorCourse.png */; };
@@ -215,6 +218,10 @@
 		28BFBDC3184769F00023E6EB /* Info.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Info.m; sourceTree = "<group>"; };
 		28BFBDC5184769FC0023E6EB /* Course.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Course.h; sourceTree = "<group>"; };
 		28BFBDC6184769FC0023E6EB /* Course.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Course.m; sourceTree = "<group>"; };
+		28BFBDC81848A74B0023E6EB /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = ../../../tableviewdemo/tableviewdemo/MBProgressHUD.h; sourceTree = "<group>"; };
+		28BFBDC91848A74B0023E6EB /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = ../../../tableviewdemo/tableviewdemo/MBProgressHUD.m; sourceTree = "<group>"; };
+		28BFBDD01848B7760023E6EB /* 37x-Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark.png"; sourceTree = "<group>"; };
+		28BFBDD11848B7760023E6EB /* 37x-Checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark@2x.png"; sourceTree = "<group>"; };
 		28DDA0C618042EC300D8A24F /* Activity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Activity.png; sourceTree = "<group>"; };
 		28DDA0C718042EC300D8A24F /* Activity@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Activity@2x.png"; sourceTree = "<group>"; };
 		28DDA0C818042EC300D8A24F /* SeniorCourse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SeniorCourse.png; sourceTree = "<group>"; };
@@ -348,6 +355,7 @@
 			children = (
 				28083BB918050D1F0003FF3D /* UIBarButtonItem+ProjectButton.h */,
 				28083BBA18050D1F0003FF3D /* UIBarButtonItem+ProjectButton.m */,
+				28BFBDCB1848A7610023E6EB /* MBProgressHUD */,
 				288E43071823943A004E5F82 /* KxMenu */,
 				288E42D418224F23004E5F82 /* REFrostedViewController */,
 				282640C41803F1900002519E /* PiAppDelegate.h */,
@@ -440,9 +448,21 @@
 			name = "Core Data";
 			sourceTree = "<group>";
 		};
+		28BFBDCB1848A7610023E6EB /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				28BFBDC81848A74B0023E6EB /* MBProgressHUD.h */,
+				28BFBDC91848A74B0023E6EB /* MBProgressHUD.m */,
+			);
+			name = MBProgressHUD;
+			path = REFrostedViewController;
+			sourceTree = "<group>";
+		};
 		28DDA0C518042EC300D8A24F /* pic */ = {
 			isa = PBXGroup;
 			children = (
+				28BFBDD01848B7760023E6EB /* 37x-Checkmark.png */,
+				28BFBDD11848B7760023E6EB /* 37x-Checkmark@2x.png */,
 				28083BC018052F280003FF3D /* background.jpg */,
 				28083BBC18052CB30003FF3D /* background@2x.jpg */,
 				28083BBD18052CB30003FF3D /* ted.jpg */,
@@ -654,6 +674,7 @@
 				28083BB3180508170003FF3D /* PiSettingViewController.xib in Resources */,
 				28BFBDB71845F6550023E6EB /* PiFavouriteViewController.xib in Resources */,
 				28DDA10718042EC300D8A24F /* Picourse@2x.png in Resources */,
+				28BFBDD31848B7760023E6EB /* 37x-Checkmark@2x.png in Resources */,
 				28DDA11318042EC300D8A24F /* Share@2x.png in Resources */,
 				28DDA10918042EC300D8A24F /* Perspective@2x.png in Resources */,
 				28083BAE1804ED090003FF3D /* PiCourseViewController.xib in Resources */,
@@ -672,6 +693,7 @@
 				28DDA0F218042EC300D8A24F /* Back.png in Resources */,
 				28DDA10518042EC300D8A24F /* Phone@2x.png in Resources */,
 				282640C01803F1900002519E /* InfoPlist.strings in Resources */,
+				28BFBDD21848B7760023E6EB /* 37x-Checkmark.png in Resources */,
 				28DDA0F418042EC300D8A24F /* GeneralCourse.png in Resources */,
 				288E42C518212894004E5F82 /* PiBigCollectionCell.xib in Resources */,
 				28DDA11018042EC300D8A24F /* Share.png in Resources */,
@@ -714,6 +736,7 @@
 				288E42C318212876004E5F82 /* PiBigCollectionCell.m in Sources */,
 				28BFBDC4184769F00023E6EB /* Info.m in Sources */,
 				284F12CB1806D8FF00FF6351 /* PiCourseDetailViewController.m in Sources */,
+				28BFBDCA1848A74B0023E6EB /* MBProgressHUD.m in Sources */,
 				284F12C11806CEAA00FF6351 /* PiInfomationViewController.m in Sources */,
 				28BFBDB51845EB450023E6EB /* PiFavouriteViewController.m in Sources */,
 				2820A3121845E1DD00C3A42C /* picourse.xcdatamodeld in Sources */,

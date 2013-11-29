@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBProgressHUD.h"
 
-@interface PiFeedbackViewController : UIViewController
+@interface PiFeedbackViewController : UIViewController<MBProgressHUDDelegate>
+
+@property (strong, nonatomic) MBProgressHUD *HUD;
 
 @end

@@ -97,8 +97,8 @@
 	else if (indexPath.row == 2)
 	{
         PiFeedbackViewController *feedbackview = [[PiFeedbackViewController alloc] initWithNibName:@"PiFeedbackViewController" bundle:nil];
-		self.navigationController.navigationBarHidden = NO;
-		feedbackview.navigationItem.title = @"反馈";
+		navigationController.navigationBarHidden = NO;
+		feedbackview.navigationItem.title = @"意见反馈";
 		[navigationController pushViewController:feedbackview animated:YES];
     }
     
