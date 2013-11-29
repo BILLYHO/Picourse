@@ -12,4 +12,9 @@
 @property (strong, nonatomic) IBOutlet UIWebView *courseDetailWebView;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *favouriteButton;
 
+@property (nonatomic, retain) NSString *category;
+@property (nonatomic, retain) NSString *identifier;
+@property (nonatomic, retain) NSString *titleName;
+@property (nonatomic, retain) NSString *company;
+
 @end

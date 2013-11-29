@@ -27,7 +27,6 @@
 static NSString *topCellIdentifier = @"TopCell";
 static NSString *normalCellIdentifier = @"NormalCell";
 static NSString *loadMoreCell = @"LoadMoreCell";
-int infoCellNum = 0;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -43,10 +42,11 @@ int infoCellNum = 0;
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-	infoCellNum = 0;
-	[self.tableView reloadData];
 	_categoryLabel.text = _infoName;
-//    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+	
+	_infoArr = [NSMutableArray arrayWithArray:[self loadDataAtPage:1]];
+	[self.tableView reloadData];
+	//_tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     //80	168	210
     self.categoryLabel.backgroundColor = aRGB(97, 183, 218, 1);
     self.backButton.image = [UIImage imageNamed:@"Back.png"];
@@ -107,13 +107,9 @@ int infoCellNum = 0;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (infoCellNum != 0)
-		return infoCellNum;
-	else
-	{
-		infoCellNum = [_itemPerPage intValue];
-		return infoCellNum;
-	}
+    if (_infoArr == nil)
+		return 0;
+	return [_infoArr count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -121,10 +117,9 @@ int infoCellNum = 0;
 	
     if (indexPath.section == 0 && indexPath.row % [_itemPerPage intValue] == 0)
 	{
-		_infoArr = [self loadDataAtPage:indexPath.row/[_itemPerPage intValue] + 1];
 		PiTopCell *cell = (PiTopCell *)[tableView dequeueReusableCellWithIdentifier:topCellIdentifier];
 		
-		NSDictionary *infoInfo = [_infoArr objectAtIndex:0];
+		NSDictionary *infoInfo = [_infoArr objectAtIndex:indexPath.row];
 		if (cell == nil)
 		{
 			cell = [[PiTopCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:topCellIdentifier];
@@ -136,7 +131,8 @@ int infoCellNum = 0;
 		cell.companyLabel.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.7];
 		cell.companyLabel.textColor = [UIColor whiteColor];
         cell.companyLabel.text = [infoInfo objectForKey:@"agency_name"];
-        if([_category isEqualToString:@"ViewInfo"] || [_category isEqualToString:@"SolutionInfo"])
+        
+		if([_category isEqualToString:@"ViewInfo"] || [_category isEqualToString:@"SolutionInfo"])
         {
             NSString *author = [NSString stringWithFormat:@"%@",[infoInfo objectForKey:@"teach_id"]];
             cell.companyLabel.text = [NSString stringWithFormat:@"%@  %@",cell.companyLabel.text,author];
@@ -152,13 +148,14 @@ int infoCellNum = 0;
 			cell = [[PiNormalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:normalCellIdentifier];
 		}
 #warning TBD
-		NSDictionary *infoInfo = [_infoArr objectAtIndex: indexPath.row % [_infoArr count]];
+		NSDictionary *infoInfo = [_infoArr objectAtIndex: indexPath.row];
 		cell.cellImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://121.199.60.94/%@",[infoInfo objectForKey: @"img_url"]]]]];
         cell.titleLabel.text = [infoInfo objectForKey:@"title"];
         cell.contentLabel.text = [infoInfo objectForKey:@"intro"];
 		cell.contentLabel.numberOfLines = 3;
 		cell.companyLabel.text = [infoInfo objectForKey:@"agency_name"];
-        if([_category isEqualToString:@"ViewInfo"] || [_category isEqualToString:@"SolutionInfo"])
+        
+		if([_category isEqualToString:@"ViewInfo"] || [_category isEqualToString:@"SolutionInfo"])
         {
             NSString *author = [NSString stringWithFormat:@"%@",[infoInfo objectForKey:@"teach_id"]];
             cell.companyLabel.text = [NSString stringWithFormat:@"%@  %@",cell.companyLabel.text,author];
@@ -171,8 +168,7 @@ int infoCellNum = 0;
             cell.companyLabel.text = [NSString stringWithFormat:@"%@  %@",cell.companyLabel.text,time];
             cell.companyLabel.adjustsFontSizeToFitWidth = YES;
         }
-		if(indexPath.row  == 1)
-			cell.backgroundColor = [UIColor whiteColor];
+		
         
         if(indexPath.row % 2 != 0)
             cell.backgroundColor = aRGB(239, 239, 239, 1);
@@ -208,20 +204,20 @@ int infoCellNum = 0;
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 	PiInfomationDetailViewController *detailview = [[PiInfomationDetailViewController alloc]initWithNibName:@"PiInfomationDetailViewController" bundle:nil];
+	detailview.category = _category;
 	[self.navigationController pushViewController:detailview animated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	if (indexPath.row + 1 == infoCellNum && [_infoArr count] == [_itemPerPage intValue])
+	if (indexPath.row + 1 == [_infoArr count])
 	{
-		_infoArr = [self loadDataAtPage: infoCellNum/[_itemPerPage intValue] + 1];
-		if (_infoArr != nil)
+		NSArray *newArr = [self loadDataAtPage: indexPath.row/[_itemPerPage intValue] + 2];
+		if (newArr != nil)
 		{
-			infoCellNum += [_infoArr count];
+			[_infoArr addObjectsFromArray:newArr];
 			[tableView reloadData];
 		}
-		_infoArr = [self loadDataAtPage: infoCellNum/[_itemPerPage intValue]];
 	}
 }
 
@@ -230,7 +226,6 @@ int infoCellNum = 0;
 {
 	NSArray *menuItems =
     @[
-      
       [KxMenuItem menuItem:@"学位项目" image:nil target:nil action:NULL],
       [KxMenuItem menuItem:@"非学位项目" image:nil target:nil action:NULL],
       [KxMenuItem menuItem:@"战略管理" image:nil target:nil action:NULL],
@@ -240,14 +235,11 @@ int infoCellNum = 0;
 	  [KxMenuItem menuItem:@"领导力" image:nil target:nil action:NULL],
 	  [KxMenuItem menuItem:@"运营与供应链" image:nil target:nil action:NULL],
 	  [KxMenuItem menuItem:@"其他" image:nil target:nil action:NULL],
-	  [KxMenuItem menuItem:@"返回" image:nil target:self action:@selector(didClickBackButton)],
+	  [KxMenuItem menuItem:@"返回" image:nil target:self action:@selector(didClickBackButton)]
       ];
     
     [KxMenu showMenuInView:self.view fromRect:CGRectMake(272, iPhone5?524:524-88, 44, 44)
 				 menuItems:menuItems];
 }
-
-
-
 
 @end

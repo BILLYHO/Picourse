@@ -17,6 +17,6 @@
 @property (strong, nonatomic) NSString *category;
 @property (strong, nonatomic) NSString *itemPerPage;
 @property (strong, nonatomic) NSString *courseName;
-@property (strong, nonatomic) NSArray *courseArr;
+@property (strong, nonatomic) NSMutableArray *courseArr;
 
 @end

@@ -17,5 +17,5 @@
 @property (strong, nonatomic) NSString *category;
 @property (strong, nonatomic) NSString *itemPerPage;
 @property (strong, nonatomic) NSString *infoName;
-@property (strong, nonatomic) NSArray *infoArr;
+@property (strong, nonatomic) NSMutableArray *infoArr;
 @end

@@ -26,7 +26,6 @@
 
 @implementation PiCourseViewController
 
-int courseCellNum = 0;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -43,7 +42,8 @@ int courseCellNum = 0;
     // Do any additional setup after loading the view from its nib.
 	_nameLabel.text = _courseName;
     _nameLabel.textColor = [UIColor whiteColor];
-	courseCellNum = 0;
+	
+	_courseArr = [NSMutableArray arrayWithArray:[self loadDataAtPage:1]];
 	[self.piCollectionView reloadData];
 	
 	[self.piCollectionView registerClass:[PiCollectionCell class] forCellWithReuseIdentifier:@"PiCollectionCell"];
@@ -81,9 +81,9 @@ int courseCellNum = 0;
 	NSURL *url = [NSURL URLWithString:urlString];
 	NSURLRequest *request = [NSURLRequest requestWithURL:url];
 	NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-	NSDictionary *infoDic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableLeaves error:&error];
-	NSArray *infoArr = [infoDic objectForKey:@"data"];
-	return infoArr;
+	NSDictionary *courseDic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableLeaves error:&error];
+	NSArray *courseArr = [courseDic objectForKey:@"data"];
+	return courseArr;
 }
 
 
@@ -97,9 +97,9 @@ int courseCellNum = 0;
 {
 	if (section == 0)
 	{
-		if(courseCellNum == 0)
-			courseCellNum = [_itemPerPage intValue];
-		return courseCellNum;
+		if(_courseArr == nil)
+			return 0;
+		return [_courseArr count];
 	}
 	else
 		return 1;
@@ -111,11 +111,10 @@ int courseCellNum = 0;
 	
 	if(indexPath.section == 0 && indexPath.row % [_itemPerPage intValue] == 0)
 	{
-		_courseArr =  [self loadDataAtPage:indexPath.row/[_itemPerPage intValue] + 1];
 		PiBigCollectionCell *cell = (PiBigCollectionCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"PiBigCollectionCell" forIndexPath:indexPath];
 		
 #warning TBD
-		NSDictionary *courseInfo = [_courseArr objectAtIndex:0];
+		NSDictionary *courseInfo = [_courseArr objectAtIndex:indexPath.row];
         if([_category isEqualToString:@"AcInfo"])
         {
             cell.titleLabel.text = [courseInfo objectForKey:@"title"];
@@ -153,46 +152,41 @@ int courseCellNum = 0;
 	}
 	else if(indexPath.section == 0)
 	{
-        NSDictionary *courseInfo = [_courseArr objectAtIndex: indexPath.row %[_courseArr count]];
-
-            PiCollectionCell *cell = (PiCollectionCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"PiCollectionCell" forIndexPath:indexPath];
-            //cell.nameLabel.text = [NSString stringWithFormat:@"%@",[courseInfo objectForKey:@"theme"]];
-            cell.dateNplaceLabel.hidden = YES;
-            if([_category isEqualToString:@"AcInfo"])
-            {
-                cell.nameLabel.text = [courseInfo objectForKey:@"title"];
-                cell.dateNplaceLabel.text =[NSString stringWithFormat:@"( %@",[courseInfo objectForKey:@"time"]];
-                cell.dateNplaceLabel.text = [cell.dateNplaceLabel.text substringWithRange:NSMakeRange(0, 12)];
-                cell.dateNplaceLabel.text = [NSString stringWithFormat:@"%@ )",cell.dateNplaceLabel.text];
-                cell.dateNplaceLabel.hidden = NO;
-            }
-            else
-            {
-                cell.nameLabel.text = [courseInfo objectForKey:@"theme"];
-            }
-            //		cell.detailLabel.text = [NSString stringWithFormat:@"%@",[courseInfo objectForKey:@"target"]];
-            cell.companyLabel.text = [NSString stringWithFormat:@"%@",[courseInfo objectForKey:@"agency_name"]];
-            if([_category isEqualToString:@"OpenCourse"])
-            {
-                cell.dateNplaceLabel.text = [NSString stringWithFormat:@"%@",[courseInfo objectForKey:@"time"]];
-                cell.dateNplaceLabel.text = [cell.dateNplaceLabel.text substringWithRange:NSMakeRange(0, 10)];
-                NSString *place = [NSString stringWithFormat:@"%@",[courseInfo objectForKey:@"place"]];
-                cell.dateNplaceLabel.text = [NSString stringWithFormat:@"( %@ %@ )",cell.dateNplaceLabel.text,place];
-                cell.dateNplaceLabel.hidden = NO;
-                
-            }
+        NSDictionary *courseInfo = [_courseArr objectAtIndex: indexPath.row ];
+		
+		PiCollectionCell *cell = (PiCollectionCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"PiCollectionCell" forIndexPath:indexPath];
+		//cell.nameLabel.text = [NSString stringWithFormat:@"%@",[courseInfo objectForKey:@"theme"]];
+		cell.dateNplaceLabel.hidden = YES;
+		if([_category isEqualToString:@"AcInfo"])
+		{
+			cell.nameLabel.text = [courseInfo objectForKey:@"title"];
+			cell.dateNplaceLabel.text =[NSString stringWithFormat:@"( %@",[courseInfo objectForKey:@"time"]];
+			cell.dateNplaceLabel.text = [cell.dateNplaceLabel.text substringWithRange:NSMakeRange(0, 12)];
+			cell.dateNplaceLabel.text = [NSString stringWithFormat:@"%@ )",cell.dateNplaceLabel.text];
+			cell.dateNplaceLabel.hidden = NO;
+		}
+		else
+		{
+			cell.nameLabel.text = [courseInfo objectForKey:@"theme"];
+		}
+		//		cell.detailLabel.text = [NSString stringWithFormat:@"%@",[courseInfo objectForKey:@"target"]];
+		cell.companyLabel.text = [NSString stringWithFormat:@"%@",[courseInfo objectForKey:@"agency_name"]];
+		if([_category isEqualToString:@"OpenCourse"])
+		{
+			cell.dateNplaceLabel.text = [NSString stringWithFormat:@"%@",[courseInfo objectForKey:@"time"]];
+			cell.dateNplaceLabel.text = [cell.dateNplaceLabel.text substringWithRange:NSMakeRange(0, 10)];
+			NSString *place = [NSString stringWithFormat:@"%@",[courseInfo objectForKey:@"place"]];
+			cell.dateNplaceLabel.text = [NSString stringWithFormat:@"( %@ %@ )",cell.dateNplaceLabel.text,place];
+			cell.dateNplaceLabel.hidden = NO;
+		}
         
-            [cell.layer setBorderColor:[UIColor colorWithRed:213.0/255.0f green:210.0/255.0f blue:199.0/255.0f alpha:1.0f].CGColor];
-            [cell.layer setBorderWidth:1.0f];
-            [cell.layer setShadowOffset:CGSizeMake(0, 1)];
-            [cell.layer setShadowColor:[[UIColor darkGrayColor] CGColor]];
-            [cell.layer setShadowRadius:8.0];
-            [cell.layer setShadowOpacity:0.8];
-            return cell;	
-		
-#warning TBD
-		
-		
+		[cell.layer setBorderColor:[UIColor colorWithRed:213.0/255.0f green:210.0/255.0f blue:199.0/255.0f alpha:1.0f].CGColor];
+		[cell.layer setBorderWidth:1.0f];
+		[cell.layer setShadowOffset:CGSizeMake(0, 1)];
+		[cell.layer setShadowColor:[[UIColor darkGrayColor] CGColor]];
+		[cell.layer setShadowRadius:8.0];
+		[cell.layer setShadowOpacity:0.8];
+		return cell;
 	}
 	else
 	{
@@ -207,18 +201,15 @@ int courseCellNum = 0;
     UIView* selectedBGView = [[UIView alloc] init];
     selectedBGView.backgroundColor = [UIColor grayColor];
     selectedCell.selectedBackgroundView = selectedBGView;
+	
 	if (indexPath.section == 1 )
 	{
 		[collectionView deselectItemAtIndexPath:indexPath animated:YES];
-		if ([_courseArr count] == [_itemPerPage intValue])
+		NSArray *newArr = [self loadDataAtPage:([_courseArr count]-1) / [_itemPerPage intValue] + 2];
+		if(newArr != nil )
 		{
-			_courseArr = [self loadDataAtPage:courseCellNum / [_itemPerPage intValue] + 1];
-			if(_courseArr != nil )
-			{
-				courseCellNum += [_courseArr count];
-				[collectionView reloadData];
-			}
-			_courseArr = [self loadDataAtPage:courseCellNum / [_itemPerPage intValue]];
+			[_courseArr addObjectsFromArray:newArr];
+			[collectionView reloadData];
 		}
 		else
 		{
