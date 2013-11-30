@@ -63,7 +63,8 @@
         [backgroundView addGestureRecognizer:tapRecognizer];
     }
     
-    self.containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 250, self.view.frame.size.height)];
+#warning menu width
+    self.containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 235, self.view.frame.size.height)];
     self.containerView.clipsToBounds = YES;
     [self.view addSubview:self.containerView];
     

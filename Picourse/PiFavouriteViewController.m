@@ -28,13 +28,6 @@ static NSString *normalCellIdentifier = @"NormalCell";
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-		[self customizeNavigationBar];
-		
-		self.navigationController.navigationBarHidden = NO;
-		PiAppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
-		_infoArray = [appDelegate getAllInfo];
-		_courseArray = [appDelegate getAllCourse];
-		_record = [NSMutableArray arrayWithArray:_infoArray];
     }
     return self;
 }
@@ -43,6 +36,14 @@ static NSString *normalCellIdentifier = @"NormalCell";
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+	[self customizeNavigationBar];
+	
+	self.navigationController.navigationBarHidden = NO;
+	PiAppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
+	_infoArray = [appDelegate getAllInfo];
+	_courseArray = [appDelegate getAllCourse];
+	_record = [NSMutableArray arrayWithArray:_infoArray];
+	
 	UINib *normalnib = [UINib nibWithNibName:@"PiNormalCell" bundle:nil];
 	[self.favouriteTableView registerNib:normalnib forCellReuseIdentifier:normalCellIdentifier];
 	
