@@ -17,6 +17,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *generalCourseButton;
 @property (strong, nonatomic) IBOutlet UIButton *activityButton;
 @property (strong, nonatomic) IBOutlet UIButton *openCourseButton;
+@property (strong, nonatomic) IBOutlet UIButton *menuButton;
 
 
 - (IBAction)selectedCourseClicked:(id)sender;

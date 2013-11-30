@@ -12,6 +12,7 @@
 #import "PiOpenCourseViewController.h"
 #import "PiSettingViewController.h"
 #import "PiFeedbackViewController.h"
+#import "PiNavigationController.h"
 #define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
 
 @interface PiMainViewController ()
@@ -80,6 +81,9 @@
 	[self.openCourseButton setImage:[UIImage imageNamed:@"OpenCourse"] forState:UIControlStateNormal];
 	[self.openCourseButton setTitleEdgeInsets:UIEdgeInsetsMake(60, -15, 5, 5)];
 	[self.openCourseButton setTitle:@"公开课程" forState:UIControlStateNormal];
+
+	
+	[_menuButton addTarget:(PiNavigationController *)self.navigationController action:@selector(leftSwipe) forControlEvents:UIControlEventTouchUpInside];
 }
 
 
@@ -88,6 +92,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 - (IBAction)selectedCourseClicked:(id)sender
 {

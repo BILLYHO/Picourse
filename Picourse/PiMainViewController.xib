@@ -9,6 +9,7 @@
                 <outlet property="activityButton" destination="C2d-RS-CFq" id="BA0-AP-65P"/>
                 <outlet property="generalCourseButton" destination="OAZ-8J-eSz" id="M4e-iC-jSH"/>
                 <outlet property="infomationButton" destination="d4T-A5-hVO" id="Key-AX-7Qn"/>
+                <outlet property="menuButton" destination="2xb-k8-Qls" id="1We-4Y-tlg"/>
                 <outlet property="openCourseButton" destination="UqY-Sj-5gH" id="LPU-6a-idS"/>
                 <outlet property="perspectiveButton" destination="DYa-1u-nBu" id="GrX-0f-VwM"/>
                 <outlet property="selectedCourseButton" destination="xYz-5J-vcc" id="4os-rw-g7b"/>
@@ -146,6 +147,12 @@
                         <action selector="seniorCourseClicked:" destination="-1" eventType="touchUpInside" id="bgM-ZY-ap1"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2xb-k8-Qls">
+                    <rect key="frame" x="244" y="20" width="76" height="72"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" image="List.png"/>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstItem="d4T-A5-hVO" firstAttribute="leading" secondItem="PLe-mr-jeK" secondAttribute="leading" id="0R6-hT-gdO"/>
@@ -186,6 +193,7 @@
         </view>
     </objects>
     <resources>
+        <image name="List.png" width="50" height="50"/>
         <image name="Picourse.png" width="171" height="29"/>
         <image name="background.jpg" width="320" height="568"/>
     </resources>
