@@ -40,8 +40,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-	_nameLabel.text = _courseName;
-    _nameLabel.textColor = [UIColor whiteColor];
 	
 	_courseArr = [NSMutableArray arrayWithArray:[self loadDataAtPage:1]];
 	[self.piCollectionView reloadData];
@@ -50,9 +48,23 @@
 	[self.piCollectionView registerClass:[PiBigCollectionCell class] forCellWithReuseIdentifier:@"PiBigCollectionCell"];
 	[self.piCollectionView registerClass:[PiCourseLoadMoreCell class] forCellWithReuseIdentifier:@"PiCourseLoadMoreCell"];
 	self.piCollectionView.backgroundColor = [UIColor whiteColor];
-    _nameLabel.backgroundColor = aRGB(101, 186, 225, 1);//101	186	225
-    _nameLabel.adjustsFontSizeToFitWidth = YES;
-    
+
+    UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 20, 10, 40)];
+    tempLabel.text = _courseName;
+    tempLabel.font = [UIFont boldSystemFontOfSize:18];
+    CGSize newSize = [tempLabel sizeThatFits:tempLabel.frame.size];
+    CGRect frame = tempLabel.frame;
+    frame.size = newSize;
+    frame.size.height = 40;
+    frame.size.width += 20;
+    UILabel *finalNameLabel = [[UILabel alloc] initWithFrame:frame];
+    finalNameLabel.text = tempLabel.text;
+    finalNameLabel.backgroundColor = aRGB(107, 183, 225, 1); //107	183	225
+    finalNameLabel.textColor = [UIColor whiteColor];
+    finalNameLabel.font = [UIFont boldSystemFontOfSize:18];
+    finalNameLabel.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:finalNameLabel];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -99,7 +111,11 @@
 	{
 		if(_courseArr == nil)
 			return 0;
-		return [_courseArr count];
+        int tmp = [_courseArr count] % 5;
+        if(tmp > 1 && tmp % 2 == 0)
+            return [_courseArr count] + 1;
+        else
+            return [_courseArr count];
 	}
 	else
 		return 1;
@@ -126,14 +142,18 @@
 		cell.titleLabel.textColor = [UIColor whiteColor];
 		cell.compangLabel.text = [courseInfo objectForKey:@"agency_name"];
 		cell.compangLabel.textColor = [UIColor whiteColor];
-        cell.titleLabel.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.7];
-		cell.compangLabel.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.7];
-        cell.dateNplaceLabel.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.7];
+        cell.titleLabel.backgroundColor = [UIColor clearColor];
+		cell.compangLabel.backgroundColor = [UIColor clearColor];
+        cell.dateNplaceLabel.backgroundColor = [UIColor clearColor];
+       
         if([_category isEqualToString:@"OpenCourse"]||[_category isEqualToString:@"AcInfo"])
         {
             cell.dateNplaceLabel.text = [NSString stringWithFormat:@"%@",[courseInfo objectForKey:@"time"]];
             cell.dateNplaceLabel.text = [cell.dateNplaceLabel.text substringWithRange:NSMakeRange(0, 10)];
-            cell.dateNplaceLabel.text = [NSString stringWithFormat:@"( %@ )",cell.dateNplaceLabel.text];
+            NSString *year = [cell.dateNplaceLabel.text substringWithRange:NSMakeRange(0, 4)];
+            NSString *month = [cell.dateNplaceLabel.text substringWithRange:NSMakeRange(5, 2)];
+            NSString *day = [cell.dateNplaceLabel.text substringWithRange:NSMakeRange(8, 2)];
+            cell.dateNplaceLabel.text = [NSString stringWithFormat:@"( %@年%@月%@日 )",year,month,day];
             cell.dateNplaceLabel.textColor = [UIColor whiteColor];
         }
         else
@@ -142,51 +162,81 @@
         }
 		cell.photo.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://121.199.60.94/%@",[courseInfo objectForKey: @"img_url"]]]]];
 		[cell.layer setBorderColor:[UIColor colorWithRed:213.0/255.0f green:210.0/255.0f blue:199.0/255.0f alpha:1.0f].CGColor];
-		[cell.layer setBorderWidth:1.0f];
+		[cell.layer setBorderWidth:0.5f];
 		[cell.layer setShadowOffset:CGSizeMake(0, 1)];
 		[cell.layer setShadowColor:[[UIColor darkGrayColor] CGColor]];
 		[cell.layer setShadowRadius:8.0];
 		[cell.layer setShadowOpacity:0.8];
+        
+        //[cell.superview bringSubviewToFront:cell.backgroundView];
+        cell.backView.alpha = 0.65;
 		return cell;
 		
 	}
 	else if(indexPath.section == 0)
 	{
+        if(indexPath.row < [_courseArr count])
+        {
         NSDictionary *courseInfo = [_courseArr objectAtIndex: indexPath.row ];
-		
+            
 		PiCollectionCell *cell = (PiCollectionCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"PiCollectionCell" forIndexPath:indexPath];
 		//cell.nameLabel.text = [NSString stringWithFormat:@"%@",[courseInfo objectForKey:@"theme"]];
-		cell.dateNplaceLabel.hidden = YES;
+            cell.nameLabel.numberOfLines = 2;
+
 		if([_category isEqualToString:@"AcInfo"])
 		{
 			cell.nameLabel.text = [courseInfo objectForKey:@"title"];
-			cell.dateNplaceLabel.text =[NSString stringWithFormat:@"( %@",[courseInfo objectForKey:@"time"]];
-			cell.dateNplaceLabel.text = [cell.dateNplaceLabel.text substringWithRange:NSMakeRange(0, 12)];
-			cell.dateNplaceLabel.text = [NSString stringWithFormat:@"%@ )",cell.dateNplaceLabel.text];
-			cell.dateNplaceLabel.hidden = NO;
+			NSString *time =[NSString stringWithFormat:@"( %@",[courseInfo objectForKey:@"time"]];
+//			cell.dateNplaceLabel.text = [cell.dateNplaceLabel.text substringWithRange:NSMakeRange(0, 12)];
+//			cell.dateNplaceLabel.text = [NSString stringWithFormat:@"%@ )",cell.dateNplaceLabel.text];
+//			cell.dateNplaceLabel.hidden = NO;
+            cell.companyLabel.text = [NSString stringWithFormat:@"%@",[courseInfo objectForKey:@"agency_name"]];
+            cell.companyLabel.textColor = [UIColor colorWithRed:0.57 green:0.56 blue:0.56 alpha:1.00];
 		}
 		else
 		{
 			cell.nameLabel.text = [courseInfo objectForKey:@"theme"];
+            cell.companyLabel.text = [NSString stringWithFormat:@"%@",[courseInfo objectForKey:@"agency_name"]];
+            cell.companyLabel.textColor = [UIColor colorWithRed:0.57 green:0.56 blue:0.56 alpha:1.00];
 		}
 		//		cell.detailLabel.text = [NSString stringWithFormat:@"%@",[courseInfo objectForKey:@"target"]];
-		cell.companyLabel.text = [NSString stringWithFormat:@"%@",[courseInfo objectForKey:@"agency_name"]];
+		
 		if([_category isEqualToString:@"OpenCourse"])
 		{
-			cell.dateNplaceLabel.text = [NSString stringWithFormat:@"%@",[courseInfo objectForKey:@"time"]];
-			cell.dateNplaceLabel.text = [cell.dateNplaceLabel.text substringWithRange:NSMakeRange(0, 10)];
-			NSString *place = [NSString stringWithFormat:@"%@",[courseInfo objectForKey:@"place"]];
-			cell.dateNplaceLabel.text = [NSString stringWithFormat:@"( %@ %@ )",cell.dateNplaceLabel.text,place];
-			cell.dateNplaceLabel.hidden = NO;
+			NSString *date = [NSString stringWithFormat:@"%@",[courseInfo objectForKey:@"time"]];
+			date = [date substringWithRange:NSMakeRange(0, 10)];
+            NSString *year = [date substringWithRange:NSMakeRange(0, 4)];
+            NSString *month = [date substringWithRange:NSMakeRange(5, 2)];
+            NSString *day = [date substringWithRange:NSMakeRange(8, 2)];
+            NSString *place = [NSString stringWithFormat:@"%@",[courseInfo objectForKey:@"place"]];
+            date = [NSString stringWithFormat:@"(%@年%@月%@日 %@)",year,month,day,place];
+            cell.companyLabel.text = [NSString stringWithFormat:@"%@\n%@",date,[courseInfo objectForKey:@"agency_name"]];
+            cell.companyLabel.numberOfLines = 3;
+            cell.companyLabel.textColor = [UIColor colorWithRed:0.57 green:0.56 blue:0.56 alpha:1.00];
 		}
         
 		[cell.layer setBorderColor:[UIColor colorWithRed:213.0/255.0f green:210.0/255.0f blue:199.0/255.0f alpha:1.0f].CGColor];
-		[cell.layer setBorderWidth:1.0f];
+		[cell.layer setBorderWidth:0.5f];
 		[cell.layer setShadowOffset:CGSizeMake(0, 1)];
 		[cell.layer setShadowColor:[[UIColor darkGrayColor] CGColor]];
 		[cell.layer setShadowRadius:8.0];
 		[cell.layer setShadowOpacity:0.8];
 		return cell;
+        }
+        else
+        {
+            PiCollectionCell *cell = (PiCollectionCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"PiCollectionCell" forIndexPath:indexPath];
+             cell.companyLabel.text = @"";
+            cell.nameLabel.text = @"";
+            [cell.layer setBorderColor:[UIColor colorWithRed:213.0/255.0f green:210.0/255.0f blue:199.0/255.0f alpha:1.0f].CGColor];
+            [cell.layer setBorderWidth:0.5f];
+            [cell.layer setShadowOffset:CGSizeMake(0, 1)];
+            [cell.layer setShadowColor:[[UIColor darkGrayColor] CGColor]];
+            [cell.layer setShadowRadius:8.0];
+            [cell.layer setShadowOpacity:0.8];
+            
+            return cell;
+        }
 	}
 	else
 	{
@@ -219,18 +269,21 @@
 	}
 	else
 	{
+        if(indexPath.row < [_courseArr count]){
 		PiCourseDetailViewController *detailview = [[PiCourseDetailViewController alloc] initWithNibName:@"PiCourseDetailViewController" bundle:nil];
 		[self.navigationController pushViewController:detailview animated:YES];
-		[collectionView deselectItemAtIndexPath:indexPath animated:YES];
+		
+        }
+        [collectionView deselectItemAtIndexPath:indexPath animated:YES];
 	}
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	if (indexPath.section == 0 && indexPath.row % [_itemPerPage intValue] == 0)
-		return CGSizeMake(320, 180);
+		return CGSizeMake(320, 175);
 	else if (indexPath.section == 0)
-		return CGSizeMake(160, 90);
+		return CGSizeMake(160, 100);
 	else
 		return CGSizeMake(320, 44);
 }
@@ -259,9 +312,7 @@
       [KxMenuItem menuItem:@"组织与人力资源" image:nil target:nil action:NULL],
 	  [KxMenuItem menuItem:@"领导力" image:nil target:nil action:NULL],
 	  [KxMenuItem menuItem:@"运营与供应链" image:nil target:nil action:NULL],
-	  [KxMenuItem menuItem:@"其他" image:nil target:nil action:NULL],
-	  [KxMenuItem menuItem:@"返回" image:nil target:self action:@selector(didClickBackButton)],
-      ];
+	  [KxMenuItem menuItem:@"其他" image:nil target:nil action:NULL],];
     
     [KxMenu showMenuInView:self.view fromRect:CGRectMake(264, iPhone5?524:524-88, 44, 44)
 				 menuItems:menuItems];

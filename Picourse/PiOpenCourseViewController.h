@@ -11,4 +11,7 @@
 
 @interface PiOpenCourseViewController : PiCourseViewController
 
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *timeButton;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *placeButton;
+
 @end

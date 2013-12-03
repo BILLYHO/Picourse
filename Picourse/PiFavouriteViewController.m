@@ -50,6 +50,7 @@ static NSString *normalCellIdentifier = @"NormalCell";
 	UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didClickBackButton)];
 	[recognizer setDirection:UISwipeGestureRecognizerDirectionRight];
 	[self.favouriteTableView addGestureRecognizer:recognizer];
+    _segementBar.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)didReceiveMemoryWarning
@@ -104,6 +105,13 @@ static NSString *normalCellIdentifier = @"NormalCell";
     return [_record count];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)sectionIndex
+{
+//    if (sectionIndex == 0)
+//        return 0;
+    return 0;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	PiNormalCell *cell = (PiNormalCell *)[tableView dequeueReusableCellWithIdentifier:normalCellIdentifier];
@@ -117,15 +125,16 @@ static NSString *normalCellIdentifier = @"NormalCell";
 		cell.cellImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://121.199.60.94/%@",cellInfo.imageUrl]]]];
 		cell.titleLabel.text = cellInfo.title;
 		cell.contentLabel.text = [NSString stringWithFormat:@"%@",cellInfo.content];
-		cell.companyLabel.text = [NSString stringWithFormat:@"%@    %@", cellInfo.company, cellInfo.auther];
+		//cell.companyLabel.text = [NSString stringWithFormat:@"%@    %@", cellInfo.company, cellInfo.auther];
+        cell.companyLabel.text = [NSString stringWithFormat:@"%d",indexPath.row];
 	}
 	else
 	{
 		Course *cellInfo = [_record objectAtIndex:indexPath.row];
 		cell.titleLabel.text = cellInfo.category;
-		cell.companyLabel.text = cellInfo.company;
+		cell.companyLabel.text = @"";
 		cell.cellImage.image = Nil;
-		cell.contentLabel.text = @"";
+		cell.contentLabel.text = cellInfo.company;
 	}
 	
 		
@@ -148,15 +157,18 @@ static NSString *normalCellIdentifier = @"NormalCell";
 
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return @"删除";
+	return @" 删 \n 除  ";
 }
 
 #pragma mark - Table view delegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return 100;
+	return 110;
 }
 
-
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 @end

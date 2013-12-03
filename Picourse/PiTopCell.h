@@ -13,5 +13,6 @@
 @property (strong, nonatomic) IBOutlet UIImageView *cellImage;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UILabel *companyLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *backView;
 
 @end

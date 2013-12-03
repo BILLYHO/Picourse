@@ -11,7 +11,6 @@
 @interface PiCourseViewController : UIViewController
 
 @property (strong, nonatomic) IBOutlet UICollectionView *piCollectionView;
-@property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UIToolbar *courseToolBar;
 
 @property (strong, nonatomic) NSString *category;

@@ -7,7 +7,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PiInfomationViewController">
             <connections>
                 <outlet property="backButton" destination="ALt-MV-BgG" id="Z9f-bp-Sco"/>
-                <outlet property="categoryLabel" destination="rwe-9W-IRV" id="csE-xh-oeP"/>
                 <outlet property="infoToolBar" destination="8yi-sg-e4c" id="Fzn-e4-Ejf"/>
                 <outlet property="tableView" destination="Qg1-zu-aU6" id="B3w-Is-v4T"/>
                 <outlet property="view" destination="1" id="3"/>
@@ -21,16 +20,6 @@
                 <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="viI-xs-Y30">
                     <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rwe-9W-IRV">
-                            <rect key="frame" x="20" y="0.0" width="112" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.0" green="0.75316884566326525" blue="0.75316884566326525" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Qg1-zu-aU6">
@@ -46,7 +35,7 @@
                     <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <items>
-                        <barButtonItem image="A5812E69-7FDC-412F-B39B-A5D7429CB1D8" style="plain" id="ALt-MV-BgG">
+                        <barButtonItem image="822B7F85-4756-4660-9C96-2816D26F7610" style="plain" id="ALt-MV-BgG">
                             <connections>
                                 <action selector="back:" destination="-1" id="yhl-Ff-2Zw"/>
                             </connections>
@@ -67,7 +56,7 @@
         </view>
     </objects>
     <resources>
-        <image name="A5812E69-7FDC-412F-B39B-A5D7429CB1D8" width="13" height="21">
+        <image name="822B7F85-4756-4660-9C96-2816D26F7610" width="13" height="21">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

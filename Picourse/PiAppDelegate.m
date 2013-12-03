@@ -34,7 +34,7 @@
     frostedViewController.delegate = self;
 	[self.window setRootViewController:frostedViewController];
 	
-	//[self addToDB];
+	[self addToDB];
 	
     return YES;
 }

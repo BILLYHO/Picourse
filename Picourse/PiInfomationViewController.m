@@ -42,16 +42,27 @@ static NSString *loadMoreCell = @"LoadMoreCell";
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-	_categoryLabel.text = _infoName;
 	
 	_infoArr = [NSMutableArray arrayWithArray:[self loadDataAtPage:1]];
 	[self.tableView reloadData];
-	//_tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    //80	168	210
-    self.categoryLabel.backgroundColor = aRGB(97, 183, 218, 1);
+    
     self.backButton.image = [UIImage imageNamed:@"Back.png"];
     
-    //83	172	220
+    UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 20, 10, 40)];
+    tempLabel.text = _infoName;
+    tempLabel.font = [UIFont boldSystemFontOfSize:18];
+    CGSize newSize = [tempLabel sizeThatFits:tempLabel.frame.size];
+    CGRect frame = tempLabel.frame;
+    frame.size = newSize;
+    frame.size.height = 40;
+    frame.size.width += 20;
+    UILabel *finalNameLabel = [[UILabel alloc] initWithFrame:frame];
+    finalNameLabel.text = tempLabel.text;
+    finalNameLabel.backgroundColor = aRGB(107, 183, 225, 1);
+    finalNameLabel.textColor = [UIColor whiteColor];
+    finalNameLabel.font = [UIFont boldSystemFontOfSize:18];
+    finalNameLabel.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:finalNameLabel];
 	
 	UINib *topnib = [UINib nibWithNibName:@"PiTopCell" bundle:nil];
 	[self.tableView registerNib:topnib forCellReuseIdentifier:topCellIdentifier];
@@ -127,8 +138,6 @@ static NSString *loadMoreCell = @"LoadMoreCell";
 		cell.cellImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://121.199.60.94/%@",[infoInfo objectForKey: @"img_url"]]]]];
 		cell.titleLabel.textColor = [UIColor whiteColor];
 		cell.titleLabel.text = [infoInfo objectForKey:@"title"];
-		cell.titleLabel.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.7];
-		cell.companyLabel.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.7];
 		cell.companyLabel.textColor = [UIColor whiteColor];
         cell.companyLabel.text = [infoInfo objectForKey:@"agency_name"];
         
@@ -137,7 +146,18 @@ static NSString *loadMoreCell = @"LoadMoreCell";
             NSString *author = [NSString stringWithFormat:@"%@",[infoInfo objectForKey:@"teach_id"]];
             cell.companyLabel.text = [NSString stringWithFormat:@"%@  %@",cell.companyLabel.text,author];
         }
-		
+//        2013-12-02 行业新闻时间后台仍未添加
+//        else if ([_category isEqualToString:@"NewsInfo"])
+//        {
+//
+//            NSString *originalTime = [NSString stringWithFormat:@"%@",[infoInfo objectForKey:@"time"]];
+//            NSString *year = [originalTime substringWithRange:NSMakeRange(0, 4)];
+//            NSString *month = [originalTime substringWithRange:NSMakeRange(5, 2)];
+//            NSString *day = [originalTime substringWithRange:NSMakeRange(8, 2)];
+//            NSString *finalTime = [NSString stringWithFormat:@"%@年%@月%@日",year,month,day];
+//            cell.companyLabel.text = [NSString stringWithFormat:@"%@  %@",cell.companyLabel.text,finalTime];
+//        }
+        cell.backView.alpha = 0.65;
 		return cell;
 	}
 	else if (indexPath.section == 0)
@@ -151,9 +171,12 @@ static NSString *loadMoreCell = @"LoadMoreCell";
 		NSDictionary *infoInfo = [_infoArr objectAtIndex: indexPath.row];
 		cell.cellImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://121.199.60.94/%@",[infoInfo objectForKey: @"img_url"]]]]];
         cell.titleLabel.text = [infoInfo objectForKey:@"title"];
+        
         cell.contentLabel.text = [infoInfo objectForKey:@"intro"];
-		cell.contentLabel.numberOfLines = 3;
+        cell.contentLabel.textColor = [UIColor colorWithRed:0.44 green:0.44 blue:0.44 alpha:1.00];
+		
 		cell.companyLabel.text = [infoInfo objectForKey:@"agency_name"];
+        cell.companyLabel.textColor = [UIColor colorWithRed:0.44 green:0.44 blue:0.44 alpha:1.00];
         
 		if([_category isEqualToString:@"ViewInfo"] || [_category isEqualToString:@"SolutionInfo"])
         {
@@ -161,13 +184,16 @@ static NSString *loadMoreCell = @"LoadMoreCell";
             cell.companyLabel.text = [NSString stringWithFormat:@"%@  %@",cell.companyLabel.text,author];
             cell.companyLabel.adjustsFontSizeToFitWidth = YES;
         }
-        if([_category isEqualToString:@"NewsInfo"])
-        {
-            NSString *time = [NSString stringWithFormat:@"%@",[infoInfo objectForKey:@"time"]];
-            //time = [time substringWithRange:NSMakeRange(0, 10)];
-            cell.companyLabel.text = [NSString stringWithFormat:@"%@  %@",cell.companyLabel.text,time];
-            cell.companyLabel.adjustsFontSizeToFitWidth = YES;
-        }
+//        if([_category isEqualToString:@"NewsInfo"])
+//        {
+//            NSString *originalTime = [NSString stringWithFormat:@"%@",[infoInfo objectForKey:@"time"]];
+//            NSString *year = [originalTime substringWithRange:NSMakeRange(0, 4)];
+//            NSString *month = [originalTime substringWithRange:NSMakeRange(5, 2)];
+//            NSString *day = [originalTime substringWithRange:NSMakeRange(8, 2)];
+//            NSString *finalTime = [NSString stringWithFormat:@"%@年%@月%@日",year,month,day];
+//            cell.companyLabel.text = [NSString stringWithFormat:@"%@  %@",cell.companyLabel.text,time];
+//            cell.companyLabel.adjustsFontSizeToFitWidth = YES;
+//        }
 		
         
         if(indexPath.row % 2 != 0)
@@ -195,9 +221,9 @@ static NSString *loadMoreCell = @"LoadMoreCell";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	if (indexPath.section == 0 )
-		return indexPath.row % [_itemPerPage intValue] == 0 ? 210 : 100;
+		return indexPath.row % [_itemPerPage intValue] == 0 ? 175 : 110;
 	else
-		return 44;
+		return 10;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

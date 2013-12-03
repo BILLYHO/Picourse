@@ -41,46 +41,54 @@
 	[self.selectedCourseButton setTitleEdgeInsets:UIEdgeInsetsMake(60, -15, 5, 5)];
 	[self.selectedCourseButton setTitle:@"精选课程" forState:UIControlStateNormal];
 	self.selectedCourseButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.selectedCourseButton.font = [UIFont boldSystemFontOfSize:16];
 	
 	[self.solutionButton setImageEdgeInsets:UIEdgeInsetsMake(0, 20, 10, 10)];
 	[self.solutionButton setImage:[UIImage imageNamed:@"Solution"] forState:UIControlStateNormal];
 	[self.solutionButton setTitleEdgeInsets:UIEdgeInsetsMake(60, -50, 5, 5)];
 	[self.solutionButton setTitle:@"解决方案" forState:UIControlStateNormal];
-	
+	self.solutionButton.font = [UIFont boldSystemFontOfSize:16];
+    
 	[self.perspectiveButton setImageEdgeInsets:UIEdgeInsetsMake(0, 30, 10, 10)];
 	[self.perspectiveButton setImage:[UIImage imageNamed:@"Perspective"] forState:UIControlStateNormal];
 	[self.perspectiveButton setTitleEdgeInsets:UIEdgeInsetsMake(60, -60, 5, 5)];
 	[self.perspectiveButton setTitle:@"观察与观点" forState:UIControlStateNormal];
+    self.perspectiveButton.font = [UIFont boldSystemFontOfSize:16];
 
 	
 	[self.infomationButton setImageEdgeInsets:UIEdgeInsetsMake(0, 30, 10, 10)];
 	[self.infomationButton setImage:[UIImage imageNamed:@"Infomatiom"] forState:UIControlStateNormal];
 	[self.infomationButton setTitleEdgeInsets:UIEdgeInsetsMake(60, -15, 5, 5)];
 	[self.infomationButton setTitle:@"行业新闻" forState:UIControlStateNormal];
+    self.infomationButton.font = [UIFont boldSystemFontOfSize:16];
 	
 	[self.seniorCourseButton setImageEdgeInsets:UIEdgeInsetsMake(-15, 30, 10, 10)];
 	[self.seniorCourseButton setImage:[UIImage imageNamed:@"SeniorCourse"] forState:UIControlStateNormal];
 	[self.seniorCourseButton setTitleEdgeInsets:UIEdgeInsetsMake(45, -15, 5, 15)];
-	[self.seniorCourseButton setTitle:@"高层管理课程" forState:UIControlStateNormal];
+	[self.seniorCourseButton setTitle:@"高层\n管理课程" forState:UIControlStateNormal];
 	self.seniorCourseButton.titleLabel.numberOfLines = 2;
 	self.seniorCourseButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.seniorCourseButton.font = [UIFont boldSystemFontOfSize:16];
 
 	[self.generalCourseButton setImageEdgeInsets:UIEdgeInsetsMake(-15, 30, 10, 10)];
 	[self.generalCourseButton setImage:[UIImage imageNamed:@"GeneralCourse"] forState:UIControlStateNormal];
 	[self.generalCourseButton setTitleEdgeInsets:UIEdgeInsetsMake(45, -40, 5, 5)];
-	[self.generalCourseButton setTitle:@"中基层人员\n管理课程" forState:UIControlStateNormal];
+	[self.generalCourseButton setTitle:@"中基层\n管理课程" forState:UIControlStateNormal];
 	self.generalCourseButton.titleLabel.numberOfLines = 3;
 	self.generalCourseButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.generalCourseButton.font = [UIFont boldSystemFontOfSize:16];
 	
 	[self.activityButton setImageEdgeInsets:UIEdgeInsetsMake(0, 30, 10, 10)];
 	[self.activityButton setImage:[UIImage imageNamed:@"Activity"] forState:UIControlStateNormal];
 	[self.activityButton setTitleEdgeInsets:UIEdgeInsetsMake(60, -15, 5, 5)];
 	[self.activityButton setTitle:@"行业活动" forState:UIControlStateNormal];
+    self.activityButton.font = [UIFont boldSystemFontOfSize:16];
 	
 	[self.openCourseButton setImageEdgeInsets:UIEdgeInsetsMake(0, 30, 10, 10)];
 	[self.openCourseButton setImage:[UIImage imageNamed:@"OpenCourse"] forState:UIControlStateNormal];
 	[self.openCourseButton setTitleEdgeInsets:UIEdgeInsetsMake(60, -15, 5, 5)];
 	[self.openCourseButton setTitle:@"公开课程" forState:UIControlStateNormal];
+    self.openCourseButton.font = [UIFont boldSystemFontOfSize:16];
 
 	
 	[_menuButton addTarget:(PiNavigationController *)self.navigationController action:@selector(leftSwipe) forControlEvents:UIControlEventTouchUpInside];
@@ -117,7 +125,7 @@
 {
 	PiInfomationViewController *infoView = [[PiInfomationViewController alloc] initWithNibName:@"PiInfomationViewController" bundle:nil];
 	infoView.category = @"ViewInfo";
-	infoView.infoName = @"视野观察";
+	infoView.infoName = @"观察与观点";
 	infoView.itemPerPage = @"4";
 	[self.navigationController pushViewController:infoView animated:YES];
 }
@@ -144,7 +152,7 @@
 {
 	PiCourseViewController *courseView = [[PiCourseViewController alloc] initWithNibName:@"PiCourseViewController" bundle:nil];
     courseView.category = @"MidCourse";
-	courseView.courseName = @"中基层人员管理课程";
+	courseView.courseName = @"中基层管理课程";
 	courseView.itemPerPage = @"5";
 	[self.navigationController pushViewController:courseView animated:YES];
 }

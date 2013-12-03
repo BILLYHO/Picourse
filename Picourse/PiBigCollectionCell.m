@@ -29,6 +29,7 @@
         self = [arrayOfViews objectAtIndex:0];
         [self setBackgroundColor:[UIColor whiteColor]];
     }
+    
     return self;
 }
 

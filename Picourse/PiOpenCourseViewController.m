@@ -40,6 +40,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.timeButton.title = [NSString stringWithFormat:@"时间"];
+    [self.timeButton setTitle:@"ss"];
+    self.placeButton.title = [NSString stringWithFormat:@"地点"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,10 +66,9 @@
       [KxMenuItem menuItem:@"半年内" image:nil target:nil action:NULL],
       [KxMenuItem menuItem:@"一年内" image:nil target:nil action:NULL],
 	  [KxMenuItem menuItem:@"其他" image:nil target:nil action:NULL],
-	  [KxMenuItem menuItem:@"返回" image:nil target:self action:@selector(didClickBackButton)],
-      ];
+	  ];
     
-    [KxMenu showMenuInView:self.view fromRect:CGRectMake(86, iPhone5?524:524-88, 44, 44)
+    [KxMenu showMenuInView:self.view fromRect:CGRectMake(183, iPhone5?524:524-88, 44, 44)
 				 menuItems:menuItems];
 }
 
@@ -79,10 +81,9 @@
       [KxMenuItem menuItem:@"南京" image:nil target:nil action:NULL],
       [KxMenuItem menuItem:@"东京" image:nil target:nil action:NULL],
 	  [KxMenuItem menuItem:@"其他" image:nil target:nil action:NULL],
-	  [KxMenuItem menuItem:@"返回" image:nil target:self action:@selector(didClickBackButton)],
-      ];
+	  ];
     
-    [KxMenu showMenuInView:self.view fromRect:CGRectMake(175, iPhone5?524:524-88, 44, 44)
+    [KxMenu showMenuInView:self.view fromRect:CGRectMake(270, iPhone5?524:524-88, 44, 44)
 				 menuItems:menuItems];
 }
 

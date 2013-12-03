@@ -13,5 +13,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UILabel *compangLabel;
 @property (strong, nonatomic) IBOutlet UILabel *dateNplaceLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *backView;
 
 @end
