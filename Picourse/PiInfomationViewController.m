@@ -146,7 +146,7 @@ static NSString *loadMoreCell = @"LoadMoreCell";
             NSString *author = [NSString stringWithFormat:@"%@",[infoInfo objectForKey:@"teach_id"]];
             cell.companyLabel.text = [NSString stringWithFormat:@"%@  %@",cell.companyLabel.text,author];
         }
-//        2013-12-02 行业新闻时间后台仍未添加
+#warning        2013-12-02 行业新闻时间后台仍未添加
 //        else if ([_category isEqualToString:@"NewsInfo"])
 //        {
 //
@@ -229,8 +229,9 @@ static NSString *loadMoreCell = @"LoadMoreCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+	NSDictionary *infoInfo = [_infoArr objectAtIndex:indexPath.row];
 	PiInfomationDetailViewController *detailview = [[PiInfomationDetailViewController alloc]initWithNibName:@"PiInfomationDetailViewController" bundle:nil];
-	detailview.category = _category;
+	detailview.url = [NSString stringWithFormat:@"http://121.199.60.94/web/detailPage/info.html?info=%@&id=%@",_category,[infoInfo objectForKey:@"id"]];
 	[self.navigationController pushViewController:detailview animated:YES];
 }
 

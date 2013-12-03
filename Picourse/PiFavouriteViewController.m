@@ -9,10 +9,9 @@
 #import "PiFavouriteViewController.h"
 #import "UIBarButtonItem+ProjectButton.h"
 #import "PiNormalCell.h"
+#import "PiInfomationDetailViewController.h"
+#import "PiCourseDetailViewController.h"
 
-#import "PiAppDelegate.h"
-#import "Info.h"
-#import "Course.h"
 
 #define aRGB(r,g,b,a) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a/1.0f]
 
@@ -39,10 +38,9 @@ static NSString *normalCellIdentifier = @"NormalCell";
 	[self customizeNavigationBar];
 	
 	self.navigationController.navigationBarHidden = NO;
-	PiAppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
-	_infoArray = [appDelegate getAllInfo];
-	_courseArray = [appDelegate getAllCourse];
-	_record = [NSMutableArray arrayWithArray:_infoArray];
+	
+	NSUserDefaults *dataBase = [NSUserDefaults standardUserDefaults];
+	_record = [NSMutableArray arrayWithArray:[dataBase objectForKey:@"InfoFavourite"]];
 	
 	UINib *normalnib = [UINib nibWithNibName:@"PiNormalCell" bundle:nil];
 	[self.favouriteTableView registerNib:normalnib forCellReuseIdentifier:normalCellIdentifier];
@@ -80,15 +78,16 @@ static NSString *normalCellIdentifier = @"NormalCell";
 #pragma Segment stuff
 - (IBAction)changeSegment:(UISegmentedControl *)sender
 {
-	
+	NSUserDefaults *dataBase = [NSUserDefaults standardUserDefaults];
     if ([sender selectedSegmentIndex] == 0)
 	{
-        _record = [NSMutableArray arrayWithArray:_infoArray];
+		
+		_record = [NSMutableArray arrayWithArray:[dataBase objectForKey:@"InfoFavourite"]];
 		[_favouriteTableView reloadData];
     }
 	else
 	{
-		_record = [NSMutableArray arrayWithArray:_courseArray];
+		_record = [NSMutableArray arrayWithArray:[dataBase objectForKey:@"CourseFavourite"]];
 		[_favouriteTableView reloadData];
 	}
 }
@@ -107,8 +106,6 @@ static NSString *normalCellIdentifier = @"NormalCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)sectionIndex
 {
-//    if (sectionIndex == 0)
-//        return 0;
     return 0;
 }
 
@@ -119,22 +116,21 @@ static NSString *normalCellIdentifier = @"NormalCell";
 	{
 		cell = [[PiNormalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:normalCellIdentifier];
 	}
+	
+	NSDictionary *cellInfo = [_record objectAtIndex:indexPath.row];
 	if([_segementBar selectedSegmentIndex] == 0)
 	{
-		Info *cellInfo = [_record objectAtIndex:indexPath.row];
-		cell.cellImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://121.199.60.94/%@",cellInfo.imageUrl]]]];
-		cell.titleLabel.text = cellInfo.title;
-		cell.contentLabel.text = [NSString stringWithFormat:@"%@",cellInfo.content];
-		//cell.companyLabel.text = [NSString stringWithFormat:@"%@    %@", cellInfo.company, cellInfo.auther];
-        cell.companyLabel.text = [NSString stringWithFormat:@"%d",indexPath.row];
+		cell.cellImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://121.199.60.94/%@",[cellInfo objectForKey:@"imageUrl"]]]]];
+		cell.titleLabel.text = [cellInfo objectForKey:@"title"];
+		cell.contentLabel.text = [cellInfo objectForKey:@"content"];
+		cell.companyLabel.text = [cellInfo objectForKey: @"company"];
 	}
 	else
 	{
-		Course *cellInfo = [_record objectAtIndex:indexPath.row];
-		cell.titleLabel.text = cellInfo.category;
+		cell.titleLabel.text = [cellInfo objectForKey:@"title"];;
 		cell.companyLabel.text = @"";
 		cell.cellImage.image = Nil;
-		cell.contentLabel.text = cellInfo.company;
+		cell.contentLabel.text = [cellInfo objectForKey: @"company"];
 	}
 	
 		
@@ -148,10 +144,15 @@ static NSString *normalCellIdentifier = @"NormalCell";
 
 - (void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	PiAppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
-	[appDelegate deleteItem:(NSManagedObject *)[_record objectAtIndex:indexPath.row]];
-	
 	[_record removeObjectAtIndex:indexPath.row];
+	
+	NSUserDefaults *dataBase = [NSUserDefaults standardUserDefaults];
+	if([_segementBar selectedSegmentIndex] == 0)
+		[dataBase setObject:_record forKey:@"InfoFavourite"];
+	else
+		[dataBase setObject:_record forKey:@"CourseFavourite"];
+	[dataBase synchronize];
+	
 	[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
@@ -169,6 +170,22 @@ static NSString *normalCellIdentifier = @"NormalCell";
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	self.navigationController.navigationBarHidden = YES;
+	NSDictionary *cellInfo = [_record objectAtIndex:indexPath.row];
+	if([_segementBar selectedSegmentIndex] == 0)
+	{
+		PiInfomationDetailViewController *detailview = [[PiInfomationDetailViewController alloc] initWithNibName:@"PiInfomationDetailViewController" bundle:nil];
+		detailview.url = [cellInfo objectForKey:@"url"];
+		detailview.flag = @"fav";
+		[self.navigationController pushViewController:detailview animated:YES];
+	}
+	else
+	{
+		PiCourseDetailViewController *detailview = [[PiCourseDetailViewController alloc] initWithNibName:@"PiCourseDetailViewController" bundle:nil];
+		detailview.url = [cellInfo objectForKey:@"url"];
+		//detailview.flag = @"fav";
+		[self.navigationController pushViewController:detailview animated:YES];
+	}
 }
 @end

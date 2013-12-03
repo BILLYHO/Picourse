@@ -34,123 +34,144 @@
     frostedViewController.delegate = self;
 	[self.window setRootViewController:frostedViewController];
 	
-	[self addToDB];
+	//[self addToDB];
 	
     return YES;
 }
 
+#pragma userdefault
 - (void) addToDB
 {
-	Info *entry = (Info *)[NSEntityDescription insertNewObjectForEntityForName:@"Info" inManagedObjectContext:self.managedObjectContext];
-	[entry setCategory:@"AcInfo"];
-	[entry setIdentifier:@"1"];
-	[entry setImageUrl:@"\/picourse\/Public\/pic\/default.png"];
-	[entry setTitle:@"大笨象会跳舞"];
-	[entry setContent:@"内容内容"];
-	[entry setCompany:@"公司名称"];
-	[entry setAuther:@"作者"];
+	NSUserDefaults *dataBase = [NSUserDefaults standardUserDefaults];
 	
-	Course *entry2 = (Course *)[NSEntityDescription insertNewObjectForEntityForName:@"Course" inManagedObjectContext:self.managedObjectContext];
-	[entry2 setCategory:@"OpenCourse"];
-	[entry2 setIdentifier:@"10"];
-	[entry2 setTitle:@"服装行业专场沙龙"];
-	[entry2 setCompany:@"华南理工大学管理学院"];
+	NSArray *infoObj = @[@"http://121.199.60.94/web/detailPage/course.html?course=OpenCourse&id=10" ,@"大笨象会跳舞", @"内容内容", @"公司名称", @"\/picourse\/Public\/pic\/default.png"];
+	NSArray *infoKey = @[@"url" ,@"title", @"content", @"company" ,@"imageUrl"];
+	NSDictionary *infoDic = [[NSDictionary alloc]initWithObjects:infoObj forKeys:infoKey];
+	NSArray *infoF = @[infoDic];
+	[dataBase setObject:infoF forKey:@"InfoFavourite"];
 	
-	NSError *error;
-	if(![self.managedObjectContext save:&error])
-		NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-	else
-		NSLog(@"ok!");
-}
-
-- (NSArray *)getAllInfo
-{
-	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Info"
-								inManagedObjectContext:self.managedObjectContext];
-	[fetchRequest setEntity:entity];
-	NSError* error;
-	NSArray *fetchedRecords = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-
-	return fetchedRecords;
-}
-
-- (NSArray *)getAllCourse
-{
-	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Course"
-								inManagedObjectContext:self.managedObjectContext];
-	[fetchRequest setEntity:entity];
-	NSError* error;
-	NSArray *fetchedRecords = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+	NSArray *courseObj = @[@"http://121.199.60.94/web/detailPage/info.html?info=AcInfo&id=1" ,@"服装行业专场沙龙", @"华南理工大学管理学院"];
+	NSArray *courseKey = @[@"url" ,@"title", @"company"];
+	NSDictionary *courseDic = [[NSDictionary alloc]initWithObjects:courseObj forKeys:courseKey];
+	NSArray *courseF = @[courseDic];
+	[dataBase setObject:courseF forKey:@"CourseFavourite"];
 	
-	return fetchedRecords;
+	[dataBase synchronize];
 }
 
-- (void) saveData
-{
-	NSError *error;
-	if(![self.managedObjectContext save:&error])
-		NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-	else
-		NSLog(@"Data saved!");
-}
+#pragma core data
+//- (void) addToDB
+//{
+//	Info *entry = (Info *)[NSEntityDescription insertNewObjectForEntityForName:@"Info" inManagedObjectContext:self.managedObjectContext];
+//	[entry setCategory:@"AcInfo"];
+//	[entry setIdentifier:@"1"];
+//	[entry setImageUrl:@"\/picourse\/Public\/pic\/default.png"];
+//	[entry setTitle:@"大笨象会跳舞"];
+//	[entry setContent:@"内容内容"];
+//	[entry setCompany:@"公司名称"];
+//	[entry setAuther:@"作者"];
+//	
+//	Course *entry2 = (Course *)[NSEntityDescription insertNewObjectForEntityForName:@"Course" inManagedObjectContext:self.managedObjectContext];
+//	[entry2 setCategory:@"OpenCourse"];
+//	[entry2 setIdentifier:@"10"];
+//	[entry2 setTitle:@"服装行业专场沙龙"];
+//	[entry2 setCompany:@"华南理工大学管理学院"];
+//	
+//	NSError *error;
+//	if(![self.managedObjectContext save:&error])
+//		NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+//	else
+//		NSLog(@"ok!");
+//}
+//
+//- (NSArray *)getAllInfo
+//{
+//	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+//	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Info"
+//								inManagedObjectContext:self.managedObjectContext];
+//	[fetchRequest setEntity:entity];
+//	NSError* error;
+//	NSArray *fetchedRecords = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+//
+//	return fetchedRecords;
+//}
+//
+//- (NSArray *)getAllCourse
+//{
+//	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+//	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Course"
+//								inManagedObjectContext:self.managedObjectContext];
+//	[fetchRequest setEntity:entity];
+//	NSError* error;
+//	NSArray *fetchedRecords = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+//	
+//	return fetchedRecords;
+//}
+//
+//- (void) saveData
+//{
+//	NSError *error;
+//	if(![self.managedObjectContext save:&error])
+//		NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+//	else
+//		NSLog(@"Data saved!");
+//}
+//
+//- (void) deleteItem : (NSManagedObject *) item
+//{
+//	[self.managedObjectContext deleteObject:item];
+//	[self saveData];
+//}
+//
+//- (NSManagedObjectContext *) managedObjectContext
+//{
+//	if (_managedObjectContext != nil)
+//		return _managedObjectContext;
+//
+//	NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+//	if (coordinator != nil)
+//	{
+//		_managedObjectContext = [[NSManagedObjectContext alloc] init];
+//		[_managedObjectContext setPersistentStoreCoordinator: coordinator];
+//	}
+//	return _managedObjectContext;
+//}
+//
+//- (NSManagedObjectModel *)managedObjectModel
+//{
+//	if (_managedObjectModel != nil)
+//		return _managedObjectModel;
+//	
+//	NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"picourse" withExtension:@"momd"];
+//    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+//	return _managedObjectModel;
+//}
+//
+//- (NSPersistentStoreCoordinator *)persistentStoreCoordinator
+//{
+//	if (_persistentStoreCoordinator != nil)
+//		return _persistentStoreCoordinator;
+//	
+//	NSURL *storeUrl = [NSURL fileURLWithPath: [[self applicationDocumentsDirectory]
+//											   stringByAppendingPathComponent: @"picourse.sqlite"]];
+//	NSError *error = nil;
+//	_persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc]
+//								   initWithManagedObjectModel:[self managedObjectModel]];
+//	if(![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
+//												  configuration:nil URL:storeUrl options:nil error:&error]) {
+//		/*Error for store creation should be handled in here*/
+//		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+//        abort();
+//	}
+//	
+//	return _persistentStoreCoordinator;
+//}
+//
+//- (NSString *)applicationDocumentsDirectory
+//{
+//	return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+//}
 
-- (void) deleteItem : (NSManagedObject *) item
-{
-	[self.managedObjectContext deleteObject:item];
-	[self saveData];
-}
-
-- (NSManagedObjectContext *) managedObjectContext
-{
-	if (_managedObjectContext != nil)
-		return _managedObjectContext;
-
-	NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
-	if (coordinator != nil)
-	{
-		_managedObjectContext = [[NSManagedObjectContext alloc] init];
-		[_managedObjectContext setPersistentStoreCoordinator: coordinator];
-	}
-	return _managedObjectContext;
-}
-
-- (NSManagedObjectModel *)managedObjectModel
-{
-	if (_managedObjectModel != nil)
-		return _managedObjectModel;
-	
-	NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"picourse" withExtension:@"momd"];
-    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-	return _managedObjectModel;
-}
-
-- (NSPersistentStoreCoordinator *)persistentStoreCoordinator
-{
-	if (_persistentStoreCoordinator != nil)
-		return _persistentStoreCoordinator;
-	
-	NSURL *storeUrl = [NSURL fileURLWithPath: [[self applicationDocumentsDirectory]
-											   stringByAppendingPathComponent: @"picourse.sqlite"]];
-	NSError *error = nil;
-	_persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc]
-								   initWithManagedObjectModel:[self managedObjectModel]];
-	if(![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
-												  configuration:nil URL:storeUrl options:nil error:&error]) {
-		/*Error for store creation should be handled in here*/
-		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-	}
-	
-	return _persistentStoreCoordinator;
-}
-
-- (NSString *)applicationDocumentsDirectory
-{
-	return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-}
-							
 - (void)applicationWillResignActive:(UIApplication *)application
 {
 	// Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

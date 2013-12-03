@@ -28,7 +28,10 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-		[_courseDetailWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://121.199.60.94/web/detailPage/course.html?course=OpenCourse&id=10"]]];
+	UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didClickBackButton)];
+	[recognizer setDirection:UISwipeGestureRecognizerDirectionRight];
+	[_courseDetailWebView addGestureRecognizer:recognizer];
+	[_courseDetailWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_url]]];
 }
 - (IBAction)didClickedFavouriteButton:(id)sender
 {

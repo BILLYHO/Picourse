@@ -177,7 +177,7 @@
 	{
         if(indexPath.row < [_courseArr count])
         {
-        NSDictionary *courseInfo = [_courseArr objectAtIndex: indexPath.row ];
+        NSDictionary *courseInfo = [_courseArr objectAtIndex: indexPath.row];
             
 		PiCollectionCell *cell = (PiCollectionCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"PiCollectionCell" forIndexPath:indexPath];
 		//cell.nameLabel.text = [NSString stringWithFormat:@"%@",[courseInfo objectForKey:@"theme"]];
@@ -269,11 +269,13 @@
 	}
 	else
 	{
-        if(indexPath.row < [_courseArr count]){
-		PiCourseDetailViewController *detailview = [[PiCourseDetailViewController alloc] initWithNibName:@"PiCourseDetailViewController" bundle:nil];
-		[self.navigationController pushViewController:detailview animated:YES];
-		
-        }
+        if(indexPath.row < [_courseArr count])
+		{
+			NSDictionary *courseInfo = [_courseArr objectAtIndex: indexPath.row];
+			PiCourseDetailViewController *detailview = [[PiCourseDetailViewController alloc] initWithNibName:@"PiCourseDetailViewController" bundle:nil];
+			detailview.url = [NSString stringWithFormat:@"http://121.199.60.94/web/detailPage/course.html?course=%@&id=%@",_category,[courseInfo objectForKey:@"id"]];
+			[self.navigationController pushViewController:detailview animated:YES];
+		}
         [collectionView deselectItemAtIndexPath:indexPath animated:YES];
 	}
 }
