@@ -12,6 +12,7 @@
 #import "PiNormalCell.h"
 #import "PiInfomationDetailViewController.h"
 #import "KxMenu.h"
+#import "UIImageView+WebCache.h"
 
 
 #define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
@@ -135,7 +136,8 @@ static NSString *loadMoreCell = @"LoadMoreCell";
 		{
 			cell = [[PiTopCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:topCellIdentifier];
 		}
-		cell.cellImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://121.199.60.94/%@",[infoInfo objectForKey: @"img_url"]]]]];
+		//cell.cellImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://121.199.60.94/%@",[infoInfo objectForKey: @"img_url"]]]]];
+		[cell.cellImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://121.199.60.94/%@",[infoInfo objectForKey: @"img_url"]]]];
 		cell.titleLabel.textColor = [UIColor whiteColor];
 		cell.titleLabel.text = [infoInfo objectForKey:@"title"];
 		cell.companyLabel.textColor = [UIColor whiteColor];
@@ -169,7 +171,8 @@ static NSString *loadMoreCell = @"LoadMoreCell";
 		}
 
 		NSDictionary *infoInfo = [_infoArr objectAtIndex: indexPath.row];
-		cell.cellImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://121.199.60.94/%@",[infoInfo objectForKey: @"img_url"]]]]];
+		//cell.cellImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://121.199.60.94/%@",[infoInfo objectForKey: @"img_url"]]]]];
+		[cell.cellImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://121.199.60.94/%@",[infoInfo objectForKey: @"img_url"]]]];
         cell.titleLabel.text = [infoInfo objectForKey:@"title"];
         
         cell.contentLabel.text = [infoInfo objectForKey:@"intro"];

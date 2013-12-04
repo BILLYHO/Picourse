@@ -11,6 +11,7 @@
 #import "PiNormalCell.h"
 #import "PiInfomationDetailViewController.h"
 #import "PiCourseDetailViewController.h"
+#import "UIImageView+WebCache.h"
 
 
 #define aRGB(r,g,b,a) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a/1.0f]
@@ -120,7 +121,8 @@ static NSString *normalCellIdentifier = @"NormalCell";
 	NSDictionary *cellInfo = [_record objectAtIndex:indexPath.row];
 	if([_segementBar selectedSegmentIndex] == 0)
 	{
-		cell.cellImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://121.199.60.94/%@",[cellInfo objectForKey:@"imageUrl"]]]]];
+		//cell.cellImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://121.199.60.94/%@",[cellInfo objectForKey:@"imageUrl"]]]]];
+		[cell.cellImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://121.199.60.94/%@",[cellInfo objectForKey:@"imageUrl"]]]];
 		cell.titleLabel.text = [cellInfo objectForKey:@"title"];
 		cell.contentLabel.text = [cellInfo objectForKey:@"content"];
 		cell.companyLabel.text = [cellInfo objectForKey: @"company"];

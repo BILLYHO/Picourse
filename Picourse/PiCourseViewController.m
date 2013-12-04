@@ -15,6 +15,7 @@
 #import "PiCourseDetailViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "KxMenu.h"
+#import "UIImageView+WebCache.h"
 
 #define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
 #define base_url @"http://121.199.60.94/picourse/index.php/"
@@ -160,7 +161,8 @@
         {
             cell.dateNplaceLabel.text = [NSString stringWithFormat:@" "];
         }
-		cell.photo.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://121.199.60.94/%@",[courseInfo objectForKey: @"img_url"]]]]];
+		//cell.photo.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://121.199.60.94/%@",[courseInfo objectForKey: @"img_url"]]]]];
+		[cell.photo setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://121.199.60.94/%@",[courseInfo objectForKey: @"img_url"]]]];
 		[cell.layer setBorderColor:[UIColor colorWithRed:213.0/255.0f green:210.0/255.0f blue:199.0/255.0f alpha:1.0f].CGColor];
 		[cell.layer setBorderWidth:0.5f];
 		[cell.layer setShadowOffset:CGSizeMake(0, 1)];
