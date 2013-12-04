@@ -26,7 +26,11 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="smh-kB-xJJ"/>
-                        <barButtonItem image="Favourite.png" id="Q5n-VN-eiP"/>
+                        <barButtonItem image="Favourite.png" id="Q5n-VN-eiP">
+                            <connections>
+                                <action selector="didClickFavouriteButton:" destination="-1" id="PsJ-iq-BaK"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="sQT-vu-2D9"/>
                         <barButtonItem image="Share.png" id="n9p-6f-Obw"/>
                     </items>

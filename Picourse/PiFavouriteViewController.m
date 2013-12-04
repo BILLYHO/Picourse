@@ -184,7 +184,7 @@ static NSString *normalCellIdentifier = @"NormalCell";
 	{
 		PiCourseDetailViewController *detailview = [[PiCourseDetailViewController alloc] initWithNibName:@"PiCourseDetailViewController" bundle:nil];
 		detailview.url = [cellInfo objectForKey:@"url"];
-		//detailview.flag = @"fav";
+		detailview.flag = @"fav";
 		[self.navigationController pushViewController:detailview animated:YES];
 	}
 }

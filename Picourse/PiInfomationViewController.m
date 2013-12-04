@@ -167,7 +167,7 @@ static NSString *loadMoreCell = @"LoadMoreCell";
 		{
 			cell = [[PiNormalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:normalCellIdentifier];
 		}
-#warning TBD
+
 		NSDictionary *infoInfo = [_infoArr objectAtIndex: indexPath.row];
 		cell.cellImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://121.199.60.94/%@",[infoInfo objectForKey: @"img_url"]]]]];
         cell.titleLabel.text = [infoInfo objectForKey:@"title"];
@@ -180,6 +180,7 @@ static NSString *loadMoreCell = @"LoadMoreCell";
         
 		if([_category isEqualToString:@"ViewInfo"] || [_category isEqualToString:@"SolutionInfo"])
         {
+#warning TBD
             NSString *author = [NSString stringWithFormat:@"%@",[infoInfo objectForKey:@"teach_id"]];
             cell.companyLabel.text = [NSString stringWithFormat:@"%@  %@",cell.companyLabel.text,author];
             cell.companyLabel.adjustsFontSizeToFitWidth = YES;
@@ -232,6 +233,15 @@ static NSString *loadMoreCell = @"LoadMoreCell";
 	NSDictionary *infoInfo = [_infoArr objectAtIndex:indexPath.row];
 	PiInfomationDetailViewController *detailview = [[PiInfomationDetailViewController alloc]initWithNibName:@"PiInfomationDetailViewController" bundle:nil];
 	detailview.url = [NSString stringWithFormat:@"http://121.199.60.94/web/detailPage/info.html?info=%@&id=%@",_category,[infoInfo objectForKey:@"id"]];
+	detailview.titleName = [infoInfo objectForKey:@"title"];
+	
+	if([_category isEqualToString:@"ViewInfo"] || [_category isEqualToString:@"SolutionInfo"])
+		detailview.company = [NSString stringWithFormat:@"%@  %@",[infoInfo objectForKey:@"agency_name"],[infoInfo objectForKey:@"teach_id"]];
+	else
+		detailview.company = [infoInfo objectForKey:@"agency_name"];
+	
+	detailview.imageUrl = [infoInfo objectForKey: @"img_url"];
+	detailview.content = [infoInfo objectForKey:@"intro"];
 	[self.navigationController pushViewController:detailview animated:YES];
 }
 

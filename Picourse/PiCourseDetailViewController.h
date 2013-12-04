@@ -15,5 +15,6 @@
 @property (nonatomic, retain) NSString *url;
 @property (nonatomic, retain) NSString *titleName;
 @property (nonatomic, retain) NSString *company;
+@property (nonatomic, retain) NSString *flag;
 
 @end
